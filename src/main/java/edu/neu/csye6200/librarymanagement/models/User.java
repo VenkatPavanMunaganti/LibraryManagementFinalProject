@@ -50,6 +50,7 @@ public class User {
             this.role = UserRole.valueOf(sc.next());
         }
         catch(Exception e){
+            System.out.println("in user scanner");
             System.out.println("Encountered some error");
         }
     }

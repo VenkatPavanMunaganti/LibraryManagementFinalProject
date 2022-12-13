@@ -6,6 +6,7 @@ package edu.neu.csye6200.librarymanagement.models;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 /**
@@ -39,7 +40,9 @@ public class IssuedBook {
         try{
             String ibID = sc.next();
             String ipID = sc.next();
-            LocalDate iDate = LocalDate.parse(sc.next());
+            DateTimeFormatter formatters = DateTimeFormatter.ofPattern("d/MM/uuuu");
+            String dt= sc.next();
+            LocalDate iDate = LocalDate.parse(dt, formatters);
             int tdIssued = Integer.parseInt(sc.next());
             this.issuedBookID = ibID;
             this.issuedPersonID = ipID;
@@ -52,7 +55,9 @@ public class IssuedBook {
             this.lateFee = r > 0 ? 0.0 : Math.abs(r)*0.25;
         }
         catch(Exception e){
+            System.out.println("in issued book scanner");
             System.out.println("Encountered some error");
+            e.printStackTrace();
         }
     }
 
@@ -106,11 +111,7 @@ public class IssuedBook {
 
     @Override
     public String toString() {
-        return issuedBookID + "," + issuedPersonID + "," + issuedDate.toString() + "," + totalDaysIssued;
+        return issuedBookID + "," + issuedDate.toString() + "," + totalDaysIssued + "," + remainingDays + "," +lateFee;
     }
-    
-    
-    
-    
     
 }

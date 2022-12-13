@@ -4,12 +4,20 @@
  */
 package edu.neu.csye6200.librarymanagement.views;
 
+import edu.neu.csye6200.librarymanagement.models.Book;
+import edu.neu.csye6200.librarymanagement.models.IssuedBook;
+import edu.neu.csye6200.librarymanagement.models.User;
+import edu.neu.csye6200.librarymanagement.utils.OperatingSystem;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Pavan munaganti
  */
 public class ReturnBook extends javax.swing.JPanel {
-
+    OperatingSystem os= OperatingSystem.getInstance();
     /**
      * Creates new form ReturnBook
      */
@@ -32,7 +40,7 @@ public class ReturnBook extends javax.swing.JPanel {
         jPanel8 = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
-        searchStudentTxt2 = new javax.swing.JTextField();
+        searchStudentTxtForRtn = new javax.swing.JTextField();
         searchStudentBtn2 = new javax.swing.JButton();
         jLabel33 = new javax.swing.JLabel();
         returnStudentName = new javax.swing.JLabel();
@@ -40,10 +48,10 @@ public class ReturnBook extends javax.swing.JPanel {
         returnStudentMail = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         returnStudentPhoneNo = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
         returnStudentDOB = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
         returnStudentGender = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
@@ -89,9 +97,9 @@ public class ReturnBook extends javax.swing.JPanel {
         jLabel32.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel32.setText("Student ID");
 
-        searchStudentTxt2.addActionListener(new java.awt.event.ActionListener() {
+        searchStudentTxtForRtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchStudentTxt2ActionPerformed(evt);
+                searchStudentTxtForRtnActionPerformed(evt);
             }
         });
 
@@ -99,6 +107,11 @@ public class ReturnBook extends javax.swing.JPanel {
         searchStudentBtn2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         searchStudentBtn2.setForeground(new java.awt.Color(255, 255, 255));
         searchStudentBtn2.setText("Search");
+        searchStudentBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchStudentBtn2ActionPerformed(evt);
+            }
+        });
 
         jLabel33.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel33.setText("Student Name");
@@ -115,15 +128,15 @@ public class ReturnBook extends javax.swing.JPanel {
 
         returnStudentPhoneNo.setText("9999999999");
 
-        jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel36.setText("DOB");
-
-        returnStudentDOB.setText("12th Dec 1998");
+        returnStudentDOB.setText(" ");
 
         jLabel37.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel37.setText("Gender");
 
         returnStudentGender.setText("Sample Gender");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setText("DOB");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -136,17 +149,18 @@ public class ReturnBook extends javax.swing.JPanel {
                         .addGroup(jPanel8Layout.createSequentialGroup()
                             .addComponent(jLabel32)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(searchStudentTxt2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchStudentTxtForRtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(searchStudentBtn2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(returnStudentMail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -164,7 +178,7 @@ public class ReturnBook extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel32)
-                    .addComponent(searchStudentTxt2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchStudentTxtForRtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchStudentBtn2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -180,8 +194,8 @@ public class ReturnBook extends javax.swing.JPanel {
                     .addComponent(returnStudentPhoneNo))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel36)
-                    .addComponent(returnStudentDOB))
+                    .addComponent(returnStudentDOB)
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel37)
@@ -235,48 +249,65 @@ public class ReturnBook extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void searchStudentTxt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStudentTxt2ActionPerformed
+    private void searchStudentTxtForRtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStudentTxtForRtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchStudentTxt2ActionPerformed
+    }//GEN-LAST:event_searchStudentTxtForRtnActionPerformed
+
+    private void searchStudentBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStudentBtn2ActionPerformed
+        // TODO add your handling code here:
+        String studentId= searchStudentTxtForRtn.getText();
+        if(studentId != null && !studentId.equals("") ){
+            User user = os.getUsers().stream().filter(u-> studentId.equals(u.getId())).findFirst().orElse(null);
+            if(user != null){
+                returnStudentName.setText(user.getFirstName()+" "+user.getLastName());
+                returnStudentMail.setText(user.getEmail());
+                returnStudentPhoneNo.setText("");
+                returnStudentDOB.setText("12-12-1998");
+                returnStudentGender.setText("");
+                List<IssuedBook> issuedBooks=os.getIssuedBooks().stream()
+                    .filter(book-> {
+                     System.out.println(book);
+                    return book.getIssuedPersonID().equalsIgnoreCase(studentId);
+                    }).toList();
+                populateReturnsTable(issuedBooks);
+            }else{
+                System.out.println("Alert");
+            }
+        }else{
+            System.out.println("Alert");
+        }
+    }//GEN-LAST:event_searchStudentBtn2ActionPerformed
 
 
+    private void populateReturnsTable(List<IssuedBook> issuedBooks){
+        
+        DefaultTableModel model = (DefaultTableModel) returnTable.getModel();
+        model.setRowCount(0);
+        
+        for(IssuedBook book : issuedBooks){
+            Object[] row = new Object[5];
+            
+            String[] bookString = book.toString().split(",");
+            
+            for (int i = 0; i < 5; i++) {
+                row[i] = bookString[i];
+            }
+            
+            model.addRow(row);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel issueStudentDOB;
-    private javax.swing.JLabel issueStudentDOB1;
-    private javax.swing.JLabel issueStudentGender;
-    private javax.swing.JLabel issueStudentGender1;
-    private javax.swing.JLabel issueStudentMail;
-    private javax.swing.JLabel issueStudentMail1;
-    private javax.swing.JLabel issueStudentName;
-    private javax.swing.JLabel issueStudentName1;
-    private javax.swing.JLabel issueStudentPhoneNo;
-    private javax.swing.JLabel issueStudentPhoneNo1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel returnStudentDOB;
@@ -285,11 +316,7 @@ public class ReturnBook extends javax.swing.JPanel {
     private javax.swing.JLabel returnStudentName;
     private javax.swing.JLabel returnStudentPhoneNo;
     private javax.swing.JTable returnTable;
-    private javax.swing.JButton searchStudentBtn;
-    private javax.swing.JButton searchStudentBtn1;
     private javax.swing.JButton searchStudentBtn2;
-    private javax.swing.JTextField searchStudentTxt;
-    private javax.swing.JTextField searchStudentTxt1;
-    private javax.swing.JTextField searchStudentTxt2;
+    private javax.swing.JTextField searchStudentTxtForRtn;
     // End of variables declaration//GEN-END:variables
 }

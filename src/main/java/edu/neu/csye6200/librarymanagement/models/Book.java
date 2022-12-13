@@ -44,6 +44,7 @@ public class Book {
             
         }
         catch(Exception e){
+            System.out.println("in book scanner");
             System.out.println("Encountered some error");
         }
     }

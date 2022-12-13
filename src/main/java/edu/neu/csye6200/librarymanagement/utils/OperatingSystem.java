@@ -24,14 +24,27 @@ import java.util.List;
 public class OperatingSystem {
     
     
-    public List<User> users;
-    public List<Book> books;
-    public List<IssuedBook> issuedBooks;
+    private List<User> users;
+    private List<Book> books;
+    private List<IssuedBook> issuedBooks;
     
-    public OperatingSystem(){
+    private static final OperatingSystem os = new OperatingSystem();
+    
+    private OperatingSystem(){
         loadUsers();
         loadIssuedBooks();
         loadBooks();
+        System.out.println(users);
+        System.out.println(books);
+    }
+
+    @Override
+    public String toString() {
+        return "OperatingSystem{" + "users=" + users + ", books=" + books + ", issuedBooks=" + issuedBooks + '}';
+    }
+    
+    public static OperatingSystem getInstance(){
+        return os;
     }
     
     public void loadUsers(){

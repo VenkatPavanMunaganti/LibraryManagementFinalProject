@@ -4,7 +4,12 @@
  */
 package edu.neu.csye6200.librarymanagement.utils;
 
+import edu.neu.csye6200.librarymanagement.models.Admin;
+import edu.neu.csye6200.librarymanagement.models.Staff;
+import edu.neu.csye6200.librarymanagement.models.Student;
+import edu.neu.csye6200.librarymanagement.models.Teacher;
 import edu.neu.csye6200.librarymanagement.models.User;
+import edu.neu.csye6200.librarymanagement.models.User.UserRole;
 
 /**
  *
@@ -24,6 +29,26 @@ public class UserSingletonFactory {
     }
     
     public User createUser(String csv){
-        return new User(csv);
+        String[] csvsplit = csv.split(",");
+        UserRole role = UserRole.valueOf(csvsplit[csvsplit.length-1]);
+        User user = null;
+        switch(role){
+            
+            case ADMIN:     user = new Admin(csv);
+                            break;
+            
+            case STUDENT:   user = new Student(csv);
+                            break;
+                            
+            case STAFF:     user = new Staff(csv);
+                            break;
+             
+            case TEACHER:   user = new Teacher(csv);
+                            break;
+                            
+            default:        user = new User(csv); 
+        }
+        
+        return user;
     }
 }
