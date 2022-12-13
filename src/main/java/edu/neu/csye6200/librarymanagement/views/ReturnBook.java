@@ -275,7 +275,7 @@ public class ReturnBook extends javax.swing.JPanel {
                 selectedStudentID= studentId;
                 returnStudentName.setText(user.getFirstName()+" "+user.getLastName());
                 returnStudentMail.setText(user.getEmail());
-                returnStudentPhoneNo.setText("");
+                returnStudentPhoneNo.setText(user.getPhoneNumber());
                 returnStudentDOB.setText("12-12-1998");
                 returnStudentGender.setText("");
                 List<IssuedBook> issuedBooks=os.getIssuedBooks().stream()
@@ -321,6 +321,11 @@ public class ReturnBook extends javax.swing.JPanel {
                 populateReturnsTable(issuedBooks);
                 selectedBookId=null;
                 selectedStudentID=null;
+                returnStudentName.setText("");
+                returnStudentMail.setText("");
+                returnStudentPhoneNo.setText("");
+                returnStudentDOB.setText("");
+                returnStudentGender.setText("");
             }else{
                 JOptionPane.showMessageDialog(this, "Please selected a row from table to return!");
             }

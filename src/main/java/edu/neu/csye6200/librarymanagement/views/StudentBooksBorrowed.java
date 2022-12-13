@@ -4,17 +4,57 @@
  */
 package edu.neu.csye6200.librarymanagement.views;
 
+import edu.neu.csye6200.librarymanagement.models.Book;
+import edu.neu.csye6200.librarymanagement.models.IssuedBook;
+import edu.neu.csye6200.librarymanagement.models.User;
+import edu.neu.csye6200.librarymanagement.utils.OperatingSystem;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Pavan munaganti
  */
 public class StudentBooksBorrowed extends javax.swing.JPanel {
-
+    private OperatingSystem os= OperatingSystem.getInstance();
+    User student;
     /**
      * Creates new form StudentBooksBorrowed
      */
-    public StudentBooksBorrowed() {
+    public StudentBooksBorrowed(User student) {
         initComponents();
+        this.student = student;
+        List<IssuedBook> books= os.getIssuedBooks().stream().filter(
+                b-> b.getIssuedPersonID().equals(student.getId())
+        ).toList();
+        populateStudentsBorrowedTable(books);
+    }
+    
+    
+    private void populateStudentsBorrowedTable(List<IssuedBook> issuedBooks){
+        
+        DefaultTableModel model = (DefaultTableModel) studentBooksBorrowedTbl.getModel();
+        model.setRowCount(0);
+        
+        for(IssuedBook issuedBook : issuedBooks){
+            Object[] row = new Object[7];
+            Book bk= os.getBooks().stream().filter(b-> {
+                if(b.getId().equals(issuedBook.getIssuedBookID()))
+                        System.out.println(b.getId() +"\t" +issuedBook.getIssuedBookID());
+                return b.getId().equals(issuedBook.getIssuedBookID());
+            }).findAny().orElse(null);
+            
+            
+            row[0] = issuedBook.getIssuedBookID();
+            row[1] = bk.getBookName();
+            row[2] = bk.getBookAuthor();
+            row[3] = issuedBook.getIssuedDate();
+            row[4] = issuedBook.getTotalDaysIssued();
+            row[5] = issuedBook.getRemainingDays();
+            row[6] = issuedBook.getLateFee();
+            
+            model.addRow(row);
+        }
     }
 
     /**
@@ -32,16 +72,32 @@ public class StudentBooksBorrowed extends javax.swing.JPanel {
 
         studentBooksBorrowedTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Book Id", "Book Name", "Borrowed Date", "No of days issues", "Days left for return"
+                "Book Id", "Book Name", "Author", "Borrowed Date", "No of days issued", "Days left to return", "Late fee"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(studentBooksBorrowedTbl);
+        if (studentBooksBorrowedTbl.getColumnModel().getColumnCount() > 0) {
+            studentBooksBorrowedTbl.getColumnModel().getColumn(0).setResizable(false);
+            studentBooksBorrowedTbl.getColumnModel().getColumn(1).setResizable(false);
+            studentBooksBorrowedTbl.getColumnModel().getColumn(3).setResizable(false);
+            studentBooksBorrowedTbl.getColumnModel().getColumn(4).setResizable(false);
+            studentBooksBorrowedTbl.getColumnModel().getColumn(5).setResizable(false);
+            studentBooksBorrowedTbl.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 0, 0));
