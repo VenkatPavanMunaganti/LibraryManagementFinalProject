@@ -5,6 +5,7 @@
 package edu.neu.csye6200.librarymanagement.views;
 
 import java.awt.Color;
+import java.awt.Component;
 
 /**
  *
@@ -17,6 +18,13 @@ public class AdminDashboard extends javax.swing.JFrame {
      */
     public AdminDashboard() {
         initComponents();
+        AdminStaffPanel adminStaffPanel = new AdminStaffPanel();
+        adminStaffBtn.setBackground(new Color(0,0,0));
+        adminBooksBtn.setBackground(new Color(255,43,48));
+        adminStudentsBtn.setBackground(new Color(255,43,48));
+        adminLogoutBtn.setBackground(new Color(255,43,48));    
+        adminSplitPane.setRightComponent(adminStaffPanel);
+        System.out.println( adminSplitPane.getRightComponent().getName());
     }
 
     /**
@@ -28,7 +36,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSplitPane2 = new javax.swing.JSplitPane();
+        adminSplitPane = new javax.swing.JSplitPane();
         adminMenuPane = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         adminBooksBtn = new javax.swing.JButton();
@@ -36,34 +44,11 @@ public class AdminDashboard extends javax.swing.JFrame {
         adminLogoutBtn = new javax.swing.JButton();
         adminStudentsBtn = new javax.swing.JButton();
         adminContentPane = new javax.swing.JPanel();
-        adminStaffPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jSplitPane2.setDividerLocation(200);
-        jSplitPane2.setDividerSize(3);
+        adminSplitPane.setDividerLocation(200);
+        adminSplitPane.setDividerSize(3);
 
         adminMenuPane.setBackground(new java.awt.Color(255, 43, 48));
 
@@ -186,241 +171,33 @@ public class AdminDashboard extends javax.swing.JFrame {
             .addGroup(adminMenuPaneLayout.createSequentialGroup()
                 .addGap(248, 248, 248)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(277, Short.MAX_VALUE))
+                .addContainerGap(337, Short.MAX_VALUE))
         );
 
-        jSplitPane2.setLeftComponent(adminMenuPane);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Husky Id", "First Name", "Last Name", "Email Id", "Phone No", "Username", "Password"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(6).setResizable(false);
-        }
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("First Name");
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Mail Id");
-
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("Gender");
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setText("Username");
-
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setText("Last Name");
-
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setText("Phone No");
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setText("Birth Date");
-
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
-            }
-        });
-
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setText("Password");
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel9.setText("Husky Id");
-
-        jRadioButton1.setText("Male");
-
-        jRadioButton2.setText("Female");
-
-        jRadioButton3.setText("Other");
-
-        javax.swing.GroupLayout adminStaffPanelLayout = new javax.swing.GroupLayout(adminStaffPanel);
-        adminStaffPanel.setLayout(adminStaffPanelLayout);
-        adminStaffPanelLayout.setHorizontalGroup(
-            adminStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(adminStaffPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(adminStaffPanelLayout.createSequentialGroup()
-                .addGap(137, 137, 137)
-                .addGroup(adminStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, adminStaffPanelLayout.createSequentialGroup()
-                        .addGroup(adminStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(adminStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(adminStaffPanelLayout.createSequentialGroup()
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adminStaffPanelLayout.createSequentialGroup()
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(adminStaffPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton1)
-                                .addGap(27, 27, 27)
-                                .addComponent(jRadioButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jRadioButton3)))
-                        .addGap(65, 65, 65)
-                        .addGroup(adminStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(adminStaffPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adminStaffPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(adminStaffPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(adminStaffPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, adminStaffPanelLayout.createSequentialGroup()
-                        .addGroup(adminStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(adminStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField9))))
-                .addContainerGap(177, Short.MAX_VALUE))
-        );
-        adminStaffPanelLayout.setVerticalGroup(
-            adminStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(adminStaffPanelLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addGroup(adminStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(18, 18, 18)
-                .addGroup(adminStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addGroup(adminStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addGroup(adminStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(adminStaffPanelLayout.createSequentialGroup()
-                        .addGroup(adminStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
-                        .addGroup(adminStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8)))
-                    .addGroup(adminStaffPanelLayout.createSequentialGroup()
-                        .addGroup(adminStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton3))
-                        .addGap(18, 18, 18)
-                        .addGroup(adminStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))))
-                .addContainerGap(89, Short.MAX_VALUE))
-        );
+        adminSplitPane.setLeftComponent(adminMenuPane);
 
         javax.swing.GroupLayout adminContentPaneLayout = new javax.swing.GroupLayout(adminContentPane);
         adminContentPane.setLayout(adminContentPaneLayout);
         adminContentPaneLayout.setHorizontalGroup(
             adminContentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(adminStaffPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 987, Short.MAX_VALUE)
         );
         adminContentPaneLayout.setVerticalGroup(
             adminContentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(adminStaffPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 755, Short.MAX_VALUE)
         );
 
-        jSplitPane2.setRightComponent(adminContentPane);
+        adminSplitPane.setRightComponent(adminContentPane);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane2)
+            .addComponent(adminSplitPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane2)
+            .addComponent(adminSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
         );
 
         pack();
@@ -428,14 +205,35 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void adminStaffBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminStaffBtnActionPerformed
         // TODO add your handling code here:
+        AdminStaffPanel adminStaffPanel = new AdminStaffPanel();
+        adminStaffBtn.setBackground(new Color(0,0,0));
+        adminBooksBtn.setBackground(new Color(255,43,48));
+        adminStudentsBtn.setBackground(new Color(255,43,48));
+        adminLogoutBtn.setBackground(new Color(255,43,48));    
+        adminSplitPane.setRightComponent(adminStaffPanel);
+        System.out.println( adminSplitPane.getRightComponent().getName());
     }//GEN-LAST:event_adminStaffBtnActionPerformed
 
     private void adminBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBooksBtnActionPerformed
         // TODO add your handling code here:
+        BooksCrudPanel adminStaffPanel = new BooksCrudPanel();
+        adminStaffBtn.setBackground(new Color(255,43,48));
+        adminBooksBtn.setBackground(new Color(0,0,0));
+        adminStudentsBtn.setBackground(new Color(255,43,48));
+        adminLogoutBtn.setBackground(new Color(255,43,48));    
+        adminSplitPane.setRightComponent(adminStaffPanel);
+        System.out.println( adminSplitPane.getRightComponent().getName());
     }//GEN-LAST:event_adminBooksBtnActionPerformed
 
     private void adminStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminStudentsBtnActionPerformed
         // TODO add your handling code here:
+        StudentsCrudPanel studentsCrudPanel = new StudentsCrudPanel();
+        adminStaffBtn.setBackground(new Color(255,43,48));
+        adminBooksBtn.setBackground(new Color(255,43,48));
+        adminStudentsBtn.setBackground(new Color(0,0,0));
+        adminLogoutBtn.setBackground(new Color(255,43,48));    
+        adminSplitPane.setRightComponent(studentsCrudPanel);
+        System.out.println( adminSplitPane.getRightComponent().getName());
     }//GEN-LAST:event_adminStudentsBtnActionPerformed
 
     private void adminLogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminLogoutBtnActionPerformed
@@ -449,7 +247,9 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void adminStaffBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminStaffBtnMouseExited
         // TODO add your handling code here:
-        adminStaffBtn.setBackground(new Color(255, 43, 48));
+        String rightComponentName= adminSplitPane.getRightComponent().getName();
+        if(rightComponentName!=null && !rightComponentName.equals("adminStaffPanel"))
+            adminStaffBtn.setBackground(new Color(255, 43, 48));
     }//GEN-LAST:event_adminStaffBtnMouseExited
 
     private void adminBooksBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminBooksBtnMouseEntered
@@ -459,7 +259,9 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void adminBooksBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminBooksBtnMouseExited
         // TODO add your handling code here:
-        adminBooksBtn.setBackground(new Color(255, 43, 48));
+        String rightComponentName= adminSplitPane.getRightComponent().getName();
+        if(rightComponentName!=null && !rightComponentName.equals("booksPanel"))
+            adminBooksBtn.setBackground(new Color(255, 43, 48));
     }//GEN-LAST:event_adminBooksBtnMouseExited
 
     private void adminStudentsBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminStudentsBtnMouseEntered
@@ -469,7 +271,9 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void adminStudentsBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminStudentsBtnMouseExited
         // TODO add your handling code here:
-        adminStudentsBtn.setBackground(new Color(255, 43, 48));
+        String rightComponentName= adminSplitPane.getRightComponent().getName();
+        if(rightComponentName!=null && !rightComponentName.equals("adminStudentsPanel"))
+            adminStudentsBtn.setBackground(new Color(255, 43, 48));
     }//GEN-LAST:event_adminStudentsBtnMouseExited
 
     private void adminLogoutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLogoutBtnMouseEntered
@@ -481,34 +285,6 @@ public class AdminDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         adminLogoutBtn.setBackground(new Color(255, 43, 48));
     }//GEN-LAST:event_adminLogoutBtnMouseExited
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
-
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
-
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
     
     
     
@@ -552,32 +328,9 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JPanel adminContentPane;
     private javax.swing.JButton adminLogoutBtn;
     private javax.swing.JPanel adminMenuPane;
+    private javax.swing.JSplitPane adminSplitPane;
     private javax.swing.JButton adminStaffBtn;
-    private javax.swing.JPanel adminStaffPanel;
     private javax.swing.JButton adminStudentsBtn;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSplitPane jSplitPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }
