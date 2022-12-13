@@ -220,6 +220,8 @@ public class StaffDashboard extends javax.swing.JFrame {
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
         // TODO add your handling code here:
+        staffDashboard.setVisible(false);
+        LoginFrame.loginFrame.setVisible(true);
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void issueBooksMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_issueBooksMouseEntered

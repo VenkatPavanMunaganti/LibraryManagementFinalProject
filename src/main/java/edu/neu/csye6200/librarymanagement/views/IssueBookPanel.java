@@ -9,8 +9,6 @@ import edu.neu.csye6200.librarymanagement.models.IssuedBook;
 import edu.neu.csye6200.librarymanagement.models.User;
 import edu.neu.csye6200.librarymanagement.utils.OperatingSystem;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,10 +16,11 @@ import javax.swing.JOptionPane;
  * @author Pavan munaganti
  */
 public class IssueBookPanel extends javax.swing.JPanel {
-    
-    private String selectedBook=null;
-    private String selectedPerson=null;
-    private OperatingSystem os= OperatingSystem.getInstance();
+
+    private String selectedBook = null;
+    private String selectedPerson = null;
+    private OperatingSystem os = OperatingSystem.getInstance();
+
     /**
      * Creates new form IssueBookPanel
      */
@@ -386,13 +385,13 @@ public class IssueBookPanel extends javax.swing.JPanel {
     private void searchBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBookActionPerformed
         // TODO add your handling code here:
         String searchText = searchBookTxt.getText();
-        if(searchText !=null && !searchText.equals("")){
-            Book book= os.getBooks().stream()
-                    .filter(b-> b.getId().equals(searchText)).findFirst().orElse(null);
-            if(book == null){
+        if (searchText != null && !searchText.equals("")) {
+            Book book = os.getBooks().stream()
+                    .filter(b -> b.getId().equals(searchText)).findFirst().orElse(null);
+            if (book == null) {
                 JOptionPane.showMessageDialog(this, "Book does not exists");
-            }else{
-                selectedBook= searchText;
+            } else {
+                selectedBook = searchText;
                 issueBookName.setText(book.getBookName());
                 issueBookEdition.setText(String.valueOf(book.getBookEdition()));
                 issueBookAuthor.setText(book.getBookAuthor());
@@ -400,7 +399,7 @@ public class IssueBookPanel extends javax.swing.JPanel {
                 issueBooksAvailable.setText(String.valueOf(book.getRemainingBooks()));
                 IssuedBooks.setText(String.valueOf(book.getBookQuantity()));
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Please enter a book id before search");
         }
     }//GEN-LAST:event_searchBookActionPerformed
@@ -408,51 +407,63 @@ public class IssueBookPanel extends javax.swing.JPanel {
     private void searchStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStudentBtnActionPerformed
         // TODO add your handling code here:
         // TODO add your handling code here:
-        String studentId= searchStudentTxt.getText();
-        if(studentId != null && !studentId.equals("") ){
-            User user = os.getUsers().stream().filter(u-> studentId.equals(u.getId())).findFirst().orElse(null);
-            if(user != null){
-                selectedPerson= studentId;
-                issueStudentName.setText(user.getFirstName()+" "+user.getLastName());
+        String studentId = searchStudentTxt.getText();
+        if (studentId != null && !studentId.equals("")) {
+            User user = os.getUsers().stream().filter(u -> studentId.equals(u.getId())).findFirst().orElse(null);
+            if (user != null) {
+                selectedPerson = studentId;
+                issueStudentName.setText(user.getFirstName() + " " + user.getLastName());
                 issueStudentMail.setText(user.getEmail());
-                issueStudentPhoneNo.setText("");
+                issueStudentPhoneNo.setText(user.getPhoneNumber());
                 issueStudentDOB.setText("12-12-1998");
-            }else{
-                 JOptionPane.showMessageDialog(this, "Student does not exists");
+            } else {
+                JOptionPane.showMessageDialog(this, "Student does not exists");
             }
-        }else{
-             JOptionPane.showMessageDialog(this, "Please enter a valid student ID!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Please enter a valid student ID!");
         }
     }//GEN-LAST:event_searchStudentBtnActionPerformed
 
     private void issueBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issueBookActionPerformed
         // TODO add your handling code here:
-        if(selectedBook !=null){
-            if(selectedPerson != null){
-                String days= daysIssued.getText();
+        if (selectedBook != null) {
+            if (selectedPerson != null) {
+                String days = daysIssued.getText();
                 System.out.println(days);
-                if(days !=null && !days.equals("")){
-                    IssuedBook book= new IssuedBook(selectedBook, selectedPerson, LocalDate.now(), Integer.parseInt(days));
+                if (days != null && !days.equals("")) {
+                    IssuedBook book = new IssuedBook(selectedBook, selectedPerson, LocalDate.now(), Integer.parseInt(days));
                     os.getIssuedBooks().add(book);
                     os.writeIssuedBooks();
-                    Book toUpdateBook=os.getBooks().stream().filter(b-> b.getId().equals(selectedBook)).findFirst().orElse(null);
-                    toUpdateBook.setRemainingBooks(toUpdateBook.getRemainingBooks()-1);
+                    Book toUpdateBook = os.getBooks().stream().filter(b -> b.getId().equals(selectedBook)).findFirst().orElse(null);
+                    toUpdateBook.setRemainingBooks(toUpdateBook.getRemainingBooks() - 1);
                     os.writeBooks();
-                    
-                    
-                    selectedBook=null;
-                    selectedPerson=null;
+
+                    JOptionPane.showMessageDialog(this, "Book issued successfully");
+
+                    selectedBook = null;
+                    selectedPerson = null;
                     searchBookTxt.setText("");
                     searchStudentTxt.setText("");
                     daysIssued.setText("");
-                }
-                else{
+
+                    issueBookName.setText("");
+                    issueBookEdition.setText("");
+                    issueBookAuthor.setText("");
+                    issueBookPublisher.setText("");
+                    issueBooksAvailable.setText("");
+                    IssuedBooks.setText("");
+                    
+                    issueStudentName.setText("");
+                    issueStudentMail.setText("");
+                    issueStudentPhoneNo.setText("");
+                    issueStudentDOB.setText("");
+                } else {
                     JOptionPane.showMessageDialog(this, "Please enter number of days to lend the book");
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Please select a student with student id in search");
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Please select a book with book id in search");
         }
     }//GEN-LAST:event_issueBookActionPerformed

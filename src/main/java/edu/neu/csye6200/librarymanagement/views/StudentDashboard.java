@@ -4,9 +4,13 @@
  */
 package edu.neu.csye6200.librarymanagement.views;
 
+import edu.neu.csye6200.librarymanagement.models.IssuedBook;
 import edu.neu.csye6200.librarymanagement.models.User;
+import static edu.neu.csye6200.librarymanagement.views.AdminDashboard.adminDashboard;
 import java.awt.Color;
+import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,9 +25,10 @@ public class StudentDashboard extends javax.swing.JFrame {
     public StudentDashboard(User student) {
         initComponents();
         this.student = student;
-        StudentBooksBorrowed returnBookPanel= new StudentBooksBorrowed();
-        studentSplitPane.setRightComponent(returnBookPanel);
-        studentBooksBorrowed.setBackground(new Color(0,0,0));
+        ProfilePanel profilePanel= new ProfilePanel(student);
+        studentSplitPane.setRightComponent(profilePanel);
+        studentProfile.setBackground(new Color(0,0,0));
+        studentBooksBorrowed.setBackground(new Color(204, 0, 0));
         studentLogout.setBackground(new Color(204, 0, 0));
     }
 
@@ -58,18 +63,33 @@ public class StudentDashboard extends javax.swing.JFrame {
         studentProfile.setForeground(new java.awt.Color(255, 255, 255));
         studentProfile.setText("Profile");
         studentProfile.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        studentProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentProfileActionPerformed(evt);
+            }
+        });
 
         studentBooksBorrowed.setBackground(new java.awt.Color(204, 0, 0));
         studentBooksBorrowed.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         studentBooksBorrowed.setForeground(new java.awt.Color(255, 255, 255));
         studentBooksBorrowed.setText("Books Borrowed");
         studentBooksBorrowed.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        studentBooksBorrowed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentBooksBorrowedActionPerformed(evt);
+            }
+        });
 
         studentLogout.setBackground(new java.awt.Color(204, 0, 0));
         studentLogout.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         studentLogout.setForeground(new java.awt.Color(255, 255, 255));
         studentLogout.setText("Logout");
         studentLogout.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        studentLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentLogoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -131,7 +151,7 @@ public class StudentDashboard extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(studentSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1190, Short.MAX_VALUE)
+            .addComponent(studentSplitPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,11 +161,32 @@ public class StudentDashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void studentProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentProfileActionPerformed
+        // TODO add your handling code here:
+        ProfilePanel profilePanel= new ProfilePanel(student);
+        studentSplitPane.setRightComponent(profilePanel);
+        studentProfile.setBackground(new Color(0,0,0));
+        studentBooksBorrowed.setBackground(new Color(204, 0, 0));
+        studentLogout.setBackground(new Color(204, 0, 0));
+    }//GEN-LAST:event_studentProfileActionPerformed
+
+    private void studentBooksBorrowedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentBooksBorrowedActionPerformed
+        // TODO add your handling code here:
+        StudentBooksBorrowed studentBooksBorrowedPanel= new StudentBooksBorrowed(student);
+        studentSplitPane.setRightComponent(studentBooksBorrowedPanel);
+        studentProfile.setBackground(new Color(204, 0, 0));
+        studentBooksBorrowed.setBackground(new Color(0,0,0));
+        studentLogout.setBackground(new Color(204, 0, 0));
+    }//GEN-LAST:event_studentBooksBorrowedActionPerformed
+
+    private void studentLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentLogoutActionPerformed
+        // TODO add your handling code here:
+        studentDashboard.setVisible(false);
+        LoginFrame.loginFrame.setVisible(true);
+    }//GEN-LAST:event_studentLogoutActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton adminStaffBtn;
-    private javax.swing.JButton adminStaffBtn1;
-    private javax.swing.JButton adminStaffBtn2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
