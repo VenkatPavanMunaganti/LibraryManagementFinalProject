@@ -4,7 +4,11 @@
  */
 package edu.neu.csye6200.librarymanagement.views;
 
+import edu.neu.csye6200.librarymanagement.models.Book;
+import edu.neu.csye6200.librarymanagement.utils.OperatingSystem;
 import java.awt.Color;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,11 +16,14 @@ import java.awt.Color;
  */
 public class BooksCrudPanel extends javax.swing.JPanel {
 
+    private List<Book> booksList;
     /**
      * Creates new form BooksCrudPanel
      */
     public BooksCrudPanel() {
         initComponents();
+        populateBooksList();
+        populateBooksTable();
     }
 
     /**
@@ -30,9 +37,9 @@ public class BooksCrudPanel extends javax.swing.JPanel {
 
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        adminBooksPanel = new javax.swing.JTable();
+        booksTable = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
-        booksId = new javax.swing.JTextField();
+        bookId = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         bookName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -57,7 +64,7 @@ public class BooksCrudPanel extends javax.swing.JPanel {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Book Management");
 
-        adminBooksPanel.setModel(new javax.swing.table.DefaultTableModel(
+        booksTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -76,15 +83,20 @@ public class BooksCrudPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(adminBooksPanel);
-        if (adminBooksPanel.getColumnModel().getColumnCount() > 0) {
-            adminBooksPanel.getColumnModel().getColumn(0).setResizable(false);
-            adminBooksPanel.getColumnModel().getColumn(1).setResizable(false);
-            adminBooksPanel.getColumnModel().getColumn(2).setResizable(false);
-            adminBooksPanel.getColumnModel().getColumn(3).setResizable(false);
-            adminBooksPanel.getColumnModel().getColumn(4).setResizable(false);
-            adminBooksPanel.getColumnModel().getColumn(5).setResizable(false);
-            adminBooksPanel.getColumnModel().getColumn(6).setResizable(false);
+        booksTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                booksTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(booksTable);
+        if (booksTable.getColumnModel().getColumnCount() > 0) {
+            booksTable.getColumnModel().getColumn(0).setResizable(false);
+            booksTable.getColumnModel().getColumn(1).setResizable(false);
+            booksTable.getColumnModel().getColumn(2).setResizable(false);
+            booksTable.getColumnModel().getColumn(3).setResizable(false);
+            booksTable.getColumnModel().getColumn(4).setResizable(false);
+            booksTable.getColumnModel().getColumn(5).setResizable(false);
+            booksTable.getColumnModel().getColumn(6).setResizable(false);
         }
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -216,7 +228,7 @@ public class BooksCrudPanel extends javax.swing.JPanel {
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(booksId, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(bookId, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(studentCreateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -251,7 +263,7 @@ public class BooksCrudPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(booksId, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bookId, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -345,16 +357,39 @@ public class BooksCrudPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_studentCreateBtnActionPerformed
 
+    private void booksTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_booksTableMouseClicked
+        // TODO add your handling code here:
+        if(booksTable.getSelectedRow() != -1){
+            Book book = booksList.get(booksTable.getSelectedRow());
+            bookId.setText(book.getId());
+            bookName.setText(book.getBookName());
+            bookAuthor.setText(book.getBookAuthor());
+            bookPublisher.setText(book.getBookPublisher());
+            bookEdition.setText(String.valueOf(book.getBookEdition()));
+            bookQuantity.setText(String.valueOf(book.getBookQuantity()));
+            booksRemaining.setText(String.valueOf(book.getRemainingBooks()));
+        }
+        else{
+            bookId.setText("");
+            bookName.setText("");
+            bookAuthor.setText("");
+            bookPublisher.setText("");
+            bookEdition.setText("");
+            bookQuantity.setText("");
+            booksRemaining.setText("");
+        }
+    }//GEN-LAST:event_booksTableMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable adminBooksPanel;
     private javax.swing.JTextField bookAuthor;
     private javax.swing.JTextField bookEdition;
+    private javax.swing.JTextField bookId;
     private javax.swing.JTextField bookName;
     private javax.swing.JTextField bookPublisher;
     private javax.swing.JTextField bookQuantity;
-    private javax.swing.JTextField booksId;
     private javax.swing.JTextField booksRemaining;
+    private javax.swing.JTable booksTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -368,4 +403,26 @@ public class BooksCrudPanel extends javax.swing.JPanel {
     private javax.swing.JButton studentDeleteBtn;
     private javax.swing.JButton studentUpdateBtn;
     // End of variables declaration//GEN-END:variables
+
+    private void populateBooksTable(){
+        
+        DefaultTableModel model = (DefaultTableModel) booksTable.getModel();
+        model.setRowCount(0);
+        
+        for(Book book : booksList){
+            Object[] row = new Object[7];
+            
+            String[] bookString = book.toString().split(",");
+            
+            for (int i = 0; i < 7; i++) {
+                row[i] = bookString[i];
+            }
+            
+            model.addRow(row);
+        }
+    }
+
+    private void populateBooksList() {
+        booksList = OperatingSystem.getInstance().getBooks();
+    }
 }
