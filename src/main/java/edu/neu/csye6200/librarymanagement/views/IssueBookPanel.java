@@ -4,12 +4,24 @@
  */
 package edu.neu.csye6200.librarymanagement.views;
 
+import edu.neu.csye6200.librarymanagement.models.Book;
+import edu.neu.csye6200.librarymanagement.models.IssuedBook;
+import edu.neu.csye6200.librarymanagement.models.User;
+import edu.neu.csye6200.librarymanagement.utils.OperatingSystem;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Pavan munaganti
  */
 public class IssueBookPanel extends javax.swing.JPanel {
-
+    
+    private String selectedBook=null;
+    private String selectedPerson=null;
+    private OperatingSystem os= OperatingSystem.getInstance();
     /**
      * Creates new form IssueBookPanel
      */
@@ -56,8 +68,6 @@ public class IssueBookPanel extends javax.swing.JPanel {
         issueStudentPhoneNo = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         issueStudentDOB = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        issueStudentGender = new javax.swing.JLabel();
         issueBook = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         daysIssued = new javax.swing.JTextField();
@@ -85,36 +95,41 @@ public class IssueBookPanel extends javax.swing.JPanel {
         searchBook.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         searchBook.setForeground(new java.awt.Color(255, 255, 255));
         searchBook.setText("Search");
+        searchBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBookActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Book Name");
 
-        issueBookName.setText("Sample Book");
+        issueBookName.setText("   ");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Edition");
 
-        issueBookEdition.setText("001");
+        issueBookEdition.setText("  ");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setText("Author");
 
-        issueBookAuthor.setText("sample author");
+        issueBookAuthor.setText("   ");
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel11.setText("Publisher");
 
-        issueBookPublisher.setText("Sample publisher");
+        issueBookPublisher.setText("   ");
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel13.setText("Available Books");
 
-        issueBooksAvailable.setText("0012");
+        issueBooksAvailable.setText("   ");
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel15.setText("Issued Books");
 
-        IssuedBooks.setText("0028");
+        IssuedBooks.setText("    ");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -206,31 +221,31 @@ public class IssueBookPanel extends javax.swing.JPanel {
         searchStudentBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         searchStudentBtn.setForeground(new java.awt.Color(255, 255, 255));
         searchStudentBtn.setText("Search");
+        searchStudentBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchStudentBtnActionPerformed(evt);
+            }
+        });
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel19.setText("Student Name");
 
-        issueStudentName.setText("Sample Student");
+        issueStudentName.setText("  ");
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel21.setText("Mail Id");
 
-        issueStudentMail.setText("sample@mail.com");
+        issueStudentMail.setText("   ");
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel23.setText("Phone No");
 
-        issueStudentPhoneNo.setText("9999999999");
+        issueStudentPhoneNo.setText("   ");
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel25.setText("DOB");
 
-        issueStudentDOB.setText("12th Dec 1998");
-
-        jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel27.setText("Gender");
-
-        issueStudentGender.setText("Sample Gender");
+        issueStudentDOB.setText("   ");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -252,15 +267,13 @@ public class IssueBookPanel extends javax.swing.JPanel {
                             .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(issueStudentMail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(issueStudentMail, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                             .addComponent(issueStudentName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(issueStudentPhoneNo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(issueStudentDOB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(issueStudentGender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(issueStudentDOB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -289,17 +302,18 @@ public class IssueBookPanel extends javax.swing.JPanel {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
                     .addComponent(issueStudentDOB))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel27)
-                    .addComponent(issueStudentGender))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         issueBook.setBackground(new java.awt.Color(204, 0, 0));
         issueBook.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         issueBook.setForeground(new java.awt.Color(255, 255, 255));
         issueBook.setText("Issue Book");
+        issueBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                issueBookActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("No of Days");
@@ -369,6 +383,80 @@ public class IssueBookPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_daysIssuedActionPerformed
 
+    private void searchBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBookActionPerformed
+        // TODO add your handling code here:
+        String searchText = searchBookTxt.getText();
+        if(searchText !=null && !searchText.equals("")){
+            Book book= os.getBooks().stream()
+                    .filter(b-> b.getId().equals(searchText)).findFirst().orElse(null);
+            if(book == null){
+                JOptionPane.showMessageDialog(this, "Book does not exists");
+            }else{
+                selectedBook= searchText;
+                issueBookName.setText(book.getBookName());
+                issueBookEdition.setText(String.valueOf(book.getBookEdition()));
+                issueBookAuthor.setText(book.getBookAuthor());
+                issueBookPublisher.setText(book.getBookPublisher());
+                issueBooksAvailable.setText(String.valueOf(book.getRemainingBooks()));
+                IssuedBooks.setText(String.valueOf(book.getBookQuantity()));
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Please enter a book id before search");
+        }
+    }//GEN-LAST:event_searchBookActionPerformed
+
+    private void searchStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStudentBtnActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        String studentId= searchStudentTxt.getText();
+        if(studentId != null && !studentId.equals("") ){
+            User user = os.getUsers().stream().filter(u-> studentId.equals(u.getId())).findFirst().orElse(null);
+            if(user != null){
+                selectedPerson= studentId;
+                issueStudentName.setText(user.getFirstName()+" "+user.getLastName());
+                issueStudentMail.setText(user.getEmail());
+                issueStudentPhoneNo.setText("");
+                issueStudentDOB.setText("12-12-1998");
+            }else{
+                 JOptionPane.showMessageDialog(this, "Student does not exists");
+            }
+        }else{
+             JOptionPane.showMessageDialog(this, "Please enter a valid student ID!");
+        }
+    }//GEN-LAST:event_searchStudentBtnActionPerformed
+
+    private void issueBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issueBookActionPerformed
+        // TODO add your handling code here:
+        if(selectedBook !=null){
+            if(selectedPerson != null){
+                String days= daysIssued.getText();
+                System.out.println(days);
+                if(days !=null && !days.equals("")){
+                    IssuedBook book= new IssuedBook(selectedBook, selectedPerson, LocalDate.now(), Integer.parseInt(days));
+                    os.getIssuedBooks().add(book);
+                    os.writeIssuedBooks();
+                    Book toUpdateBook=os.getBooks().stream().filter(b-> b.getId().equals(selectedBook)).findFirst().orElse(null);
+                    toUpdateBook.setRemainingBooks(toUpdateBook.getRemainingBooks()-1);
+                    os.writeBooks();
+                    
+                    
+                    selectedBook=null;
+                    selectedPerson=null;
+                    searchBookTxt.setText("");
+                    searchStudentTxt.setText("");
+                    daysIssued.setText("");
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Please enter number of days to lend the book");
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "Please select a student with student id in search");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Please select a book with book id in search");
+        }
+    }//GEN-LAST:event_issueBookActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel IssuedBooks;
@@ -380,7 +468,6 @@ public class IssueBookPanel extends javax.swing.JPanel {
     private javax.swing.JLabel issueBookPublisher;
     private javax.swing.JLabel issueBooksAvailable;
     private javax.swing.JLabel issueStudentDOB;
-    private javax.swing.JLabel issueStudentGender;
     private javax.swing.JLabel issueStudentMail;
     private javax.swing.JLabel issueStudentName;
     private javax.swing.JLabel issueStudentPhoneNo;
@@ -395,7 +482,6 @@ public class IssueBookPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

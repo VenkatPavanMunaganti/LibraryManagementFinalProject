@@ -121,6 +121,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="returnTableMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -269,7 +272,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="returnStudentName">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Sample Student"/>
+            <Property name="text" type="java.lang.String" value="  "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel34">
@@ -282,7 +285,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="returnStudentMail">
           <Properties>
-            <Property name="text" type="java.lang.String" value="sample@mail.com"/>
+            <Property name="text" type="java.lang.String" value="   "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel35">
@@ -295,7 +298,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="returnStudentPhoneNo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="9999999999"/>
+            <Property name="text" type="java.lang.String" value="   "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="returnStudentDOB">
@@ -313,7 +316,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="returnStudentGender">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Sample Gender"/>
+            <Property name="text" type="java.lang.String" value="   "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
@@ -339,6 +342,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Return Book"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>

@@ -207,6 +207,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Search"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchBookActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
@@ -218,7 +221,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="issueBookName">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Sample Book"/>
+            <Property name="text" type="java.lang.String" value="   "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
@@ -231,7 +234,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="issueBookEdition">
           <Properties>
-            <Property name="text" type="java.lang.String" value="001"/>
+            <Property name="text" type="java.lang.String" value="  "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
@@ -244,7 +247,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="issueBookAuthor">
           <Properties>
-            <Property name="text" type="java.lang.String" value="sample author"/>
+            <Property name="text" type="java.lang.String" value="   "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">
@@ -257,7 +260,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="issueBookPublisher">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Sample publisher"/>
+            <Property name="text" type="java.lang.String" value="   "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel13">
@@ -270,7 +273,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="issueBooksAvailable">
           <Properties>
-            <Property name="text" type="java.lang.String" value="0012"/>
+            <Property name="text" type="java.lang.String" value="   "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel15">
@@ -283,7 +286,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="IssuedBooks">
           <Properties>
-            <Property name="text" type="java.lang.String" value="0028"/>
+            <Property name="text" type="java.lang.String" value="    "/>
           </Properties>
         </Component>
       </SubComponents>
@@ -319,15 +322,13 @@
                               <Component id="jLabel21" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLabel23" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLabel25" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel27" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="issueStudentMail" alignment="1" max="32767" attributes="0"/>
+                              <Component id="issueStudentMail" alignment="1" pref="80" max="32767" attributes="0"/>
                               <Component id="issueStudentName" alignment="1" max="32767" attributes="0"/>
                               <Component id="issueStudentPhoneNo" alignment="1" max="32767" attributes="0"/>
                               <Component id="issueStudentDOB" alignment="1" max="32767" attributes="0"/>
-                              <Component id="issueStudentGender" alignment="1" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -366,12 +367,7 @@
                       <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="issueStudentDOB" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="issueStudentGender" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="60" max="32767" attributes="0"/>
+                  <EmptySpace pref="94" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -417,6 +413,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Search"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchStudentBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel19">
           <Properties>
@@ -428,7 +427,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="issueStudentName">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Sample Student"/>
+            <Property name="text" type="java.lang.String" value="  "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel21">
@@ -441,7 +440,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="issueStudentMail">
           <Properties>
-            <Property name="text" type="java.lang.String" value="sample@mail.com"/>
+            <Property name="text" type="java.lang.String" value="   "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel23">
@@ -454,7 +453,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="issueStudentPhoneNo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="9999999999"/>
+            <Property name="text" type="java.lang.String" value="   "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel25">
@@ -467,20 +466,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="issueStudentDOB">
           <Properties>
-            <Property name="text" type="java.lang.String" value="12th Dec 1998"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel27">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="12" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Gender"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="issueStudentGender">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Sample Gender"/>
+            <Property name="text" type="java.lang.String" value="   "/>
           </Properties>
         </Component>
       </SubComponents>
@@ -498,6 +484,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Issue Book"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="issueBookActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>

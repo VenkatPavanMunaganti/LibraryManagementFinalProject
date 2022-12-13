@@ -18,6 +18,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ReturnBook extends javax.swing.JPanel {
     OperatingSystem os= OperatingSystem.getInstance();
+    private String selectedStudentID=null;
+    private String selectedBookId=null;
+    
     /**
      * Creates new form ReturnBook
      */
@@ -78,6 +81,11 @@ public class ReturnBook extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        returnTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                returnTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(returnTable);
         if (returnTable.getColumnModel().getColumnCount() > 0) {
             returnTable.getColumnModel().getColumn(0).setResizable(false);
@@ -116,24 +124,24 @@ public class ReturnBook extends javax.swing.JPanel {
         jLabel33.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel33.setText("Student Name");
 
-        returnStudentName.setText("Sample Student");
+        returnStudentName.setText("  ");
 
         jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel34.setText("Mail Id");
 
-        returnStudentMail.setText("sample@mail.com");
+        returnStudentMail.setText("   ");
 
         jLabel35.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel35.setText("Phone No");
 
-        returnStudentPhoneNo.setText("9999999999");
+        returnStudentPhoneNo.setText("   ");
 
         returnStudentDOB.setText(" ");
 
         jLabel37.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel37.setText("Gender");
 
-        returnStudentGender.setText("Sample Gender");
+        returnStudentGender.setText("   ");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("DOB");
@@ -207,6 +215,11 @@ public class ReturnBook extends javax.swing.JPanel {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Return Book");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setForeground(new java.awt.Color(204, 0, 0));
         jLabel2.setText("**Select a book from the table and proceed with the return");
@@ -259,6 +272,7 @@ public class ReturnBook extends javax.swing.JPanel {
         if(studentId != null && !studentId.equals("") ){
             User user = os.getUsers().stream().filter(u-> studentId.equals(u.getId())).findFirst().orElse(null);
             if(user != null){
+                selectedStudentID= studentId;
                 returnStudentName.setText(user.getFirstName()+" "+user.getLastName());
                 returnStudentMail.setText(user.getEmail());
                 returnStudentPhoneNo.setText("");
@@ -271,12 +285,49 @@ public class ReturnBook extends javax.swing.JPanel {
                     }).toList();
                 populateReturnsTable(issuedBooks);
             }else{
-                System.out.println("Alert");
+                 JOptionPane.showMessageDialog(this, "Student does not exists");
             }
         }else{
-            System.out.println("Alert");
+             JOptionPane.showMessageDialog(this, "Please enter a valid student ID!");
         }
     }//GEN-LAST:event_searchStudentBtn2ActionPerformed
+
+    private void returnTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_returnTableMouseClicked
+        // TODO add your handling code here:
+        if(returnTable.getSelectedRow() != -1){
+            int selectedRow = returnTable.getSelectedRow();
+            String bookId =  returnTable.getValueAt(selectedRow, 0).toString();
+            selectedBookId= bookId;
+        }
+    }//GEN-LAST:event_returnTableMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if(selectedStudentID != null){
+            if(selectedBookId != null){
+                IssuedBook book = os.getIssuedBooks().stream()
+                        .filter(b-> b.getIssuedBookID().equals(selectedBookId) && b.getIssuedPersonID().equals(selectedStudentID))
+                        .findFirst().orElse(null);
+                os.getIssuedBooks().remove(book);
+                Book toUpdateBook=os.getBooks().stream().filter(b-> b.getId().equals(selectedBookId)).findFirst().orElse(null);
+                toUpdateBook.setRemainingBooks(toUpdateBook.getRemainingBooks()+1);
+                os.writeBooks();
+                os.writeIssuedBooks();
+                List<IssuedBook> issuedBooks=os.getIssuedBooks().stream()
+                    .filter(b-> {
+                        return b.getIssuedPersonID().equalsIgnoreCase(selectedStudentID);
+                    }).toList();
+                JOptionPane.showMessageDialog(this, "Book has been marked as returned!");
+                populateReturnsTable(issuedBooks);
+                selectedBookId=null;
+                selectedStudentID=null;
+            }else{
+                JOptionPane.showMessageDialog(this, "Please selected a row from table to return!");
+            }
+        }else{
+             JOptionPane.showMessageDialog(this, "Please select a student via search box!");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     private void populateReturnsTable(List<IssuedBook> issuedBooks){
@@ -287,11 +338,11 @@ public class ReturnBook extends javax.swing.JPanel {
         for(IssuedBook book : issuedBooks){
             Object[] row = new Object[5];
             
-            String[] bookString = book.toString().split(",");
-            
-            for (int i = 0; i < 5; i++) {
-                row[i] = bookString[i];
-            }
+            row[0] = book.getIssuedBookID();
+            row[1] = book.getIssuedDate();
+            row[2] = book.getTotalDaysIssued();
+            row[3] = book.getRemainingDays();
+            row[4] = book.getLateFee();
             
             model.addRow(row);
         }
