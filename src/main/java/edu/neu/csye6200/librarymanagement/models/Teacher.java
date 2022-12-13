@@ -10,8 +10,8 @@ package edu.neu.csye6200.librarymanagement.models;
  */
 public class Teacher extends User {
 
-    public Teacher(String id, String firstName, String lastName, String email, String username, String password) {
-        super(id, firstName, lastName, email, username, password, UserRole.TEACHER);
+    public Teacher(String id, String firstName, String lastName, String email, String phoneNumber, String username, String password, UserRole role) {
+        super(id, firstName, lastName, email, phoneNumber, username, password, role);
     }
     
     public Teacher(String csv){

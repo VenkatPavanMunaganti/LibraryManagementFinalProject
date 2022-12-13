@@ -31,29 +31,11 @@
                               <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel2" min="-2" pref="80" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="adminStudentMail" min="-2" pref="218" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel4" min="-2" pref="80" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="adminStudentUsername" min="-2" pref="218" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel3" min="-2" pref="80" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="adminStudentRadioMale" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                              <Component id="adminStudentRadioFemale" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="adminStudentRadioOther" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                      <Component id="jLabel2" min="-2" pref="80" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="adminStudentMail" min="-2" pref="218" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="jLabel5" min="-2" pref="80" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
@@ -63,16 +45,6 @@
                                               <Component id="jLabel6" min="-2" pref="80" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="adminStudentPhoneNo" min="-2" pref="218" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel7" min="-2" pref="80" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="adminStudentDOB" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel8" min="-2" pref="80" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="adminStudentPassword" min="-2" pref="218" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -87,12 +59,23 @@
                                           <Component id="adminStudentId" alignment="0" min="-2" pref="587" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="adminStudentCreateBtn" min="-2" pref="212" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="adminStudentUpdateBtn" min="-2" pref="218" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                      <Component id="adminStudentDeleteBtn" min="-2" pref="218" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel4" min="-2" pref="80" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="adminStudentUsername" min="-2" pref="218" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                                          <Component id="jLabel8" min="-2" pref="80" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="adminStudentPassword" min="-2" pref="217" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="adminStudentCreateBtn" min="-2" pref="212" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="adminStudentUpdateBtn" min="-2" pref="218" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                          <Component id="adminStudentDeleteBtn" min="-2" pref="218" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
@@ -115,7 +98,7 @@
               <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="334" max="-2" attributes="0"/>
-              <EmptySpace pref="32" max="32767" attributes="0"/>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="adminStudentId" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -135,38 +118,21 @@
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                          <Component id="adminStudentDOB" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="adminStudentUsername" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="adminStudentPassword" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="adminStudentRadioMale" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="adminStudentRadioFemale" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="adminStudentRadioOther" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="adminStudentUsername" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="adminStudentPassword" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="adminStudentDeleteBtn" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="adminStudentUpdateBtn" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="adminStudentCreateBtn" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -187,7 +153,7 @@
                 <Column editable="false" title="First Name" type="java.lang.Object"/>
                 <Column editable="false" title="Last Name" type="java.lang.Object"/>
                 <Column editable="false" title="Email Id" type="java.lang.Object"/>
-                <Column editable="false" title="Phone No" type="java.lang.Object"/>
+                <Column editable="true" title="Phone Number" type="java.lang.Object"/>
                 <Column editable="false" title="Username" type="java.lang.Object"/>
               </Table>
             </Property>
@@ -229,6 +195,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="adminStudentTableMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -257,14 +226,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminStudentMailActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="14" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Gender"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -305,19 +266,6 @@
         <Property name="text" type="java.lang.String" value="Phone No"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel7">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="14" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Birth Date"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="adminStudentPassword">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminStudentPasswordActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -339,21 +287,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="adminStudentId">
     </Component>
-    <Component class="javax.swing.JRadioButton" name="adminStudentRadioMale">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Male"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="adminStudentRadioFemale">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Female"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="adminStudentRadioOther">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Other"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="adminStudentUpdateBtn">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -364,6 +297,7 @@
       <Events>
         <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="adminStudentUpdateBtnMouseEntered"/>
         <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="adminStudentUpdateBtnMouseExited"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminStudentUpdateBtnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="adminStudentDeleteBtn">
@@ -382,6 +316,7 @@
       <Events>
         <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="adminStudentDeleteBtnMouseEntered"/>
         <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="adminStudentDeleteBtnMouseExited"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminStudentDeleteBtnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="adminStudentCreateBtn">
@@ -397,8 +332,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminStudentCreateBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="adminStudentDOB">
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -413,6 +346,11 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Student Management"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="adminStudentPassword">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminStudentPasswordActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

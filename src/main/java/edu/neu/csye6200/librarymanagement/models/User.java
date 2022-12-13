@@ -23,15 +23,17 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
+    private String phoneNumber;
     private String username;
     private String password;
     private UserRole role;
 
-    public User(String id, String firstName, String lastName, String email, String username, String password, UserRole role) {
+    public User(String id, String firstName, String lastName, String email, String phoneNumber, String username, String password, UserRole role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.phoneNumber = phoneNumber;
         this.username = username;
         this.password = password;
         this.role = role;
@@ -45,6 +47,7 @@ public class User {
             this.firstName = sc.next();
             this.lastName = sc.next();
             this.email = sc.next();
+            this.phoneNumber = sc.next();
             this.username = sc.next();
             this.password = sc.next();
             this.role = UserRole.valueOf(sc.next());
@@ -87,6 +90,14 @@ public class User {
         this.email = email;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -113,7 +124,7 @@ public class User {
 
     @Override
     public String toString() {
-        return  id + "," + firstName + ","  + lastName + ","  + email + ","  + username + ","  + password + "," + role.toString();
+        return  id + "," + firstName + ","  + lastName + ","  + email + "," + phoneNumber + "," + username + ","  + password + "," + role.toString();
     }
       
 }
