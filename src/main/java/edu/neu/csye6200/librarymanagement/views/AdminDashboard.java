@@ -4,27 +4,36 @@
  */
 package edu.neu.csye6200.librarymanagement.views;
 
+import edu.neu.csye6200.librarymanagement.models.User;
 import java.awt.Color;
 import java.awt.Component;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Pavan munaganti
  */
 public class AdminDashboard extends javax.swing.JFrame {
-
+    
+    public static JFrame adminDashboard;
+    User admin;
     /**
      * Creates new form AdminDashboard
      */
-    public AdminDashboard() {
+    
+    public AdminDashboard(){
+        
+    }
+    public AdminDashboard(User admin) {
         initComponents();
+        this.admin = admin;
         AdminStaffPanel adminStaffPanel = new AdminStaffPanel();
         adminStaffBtn.setBackground(new Color(0,0,0));
         adminBooksBtn.setBackground(new Color(255,43,48));
         adminStudentsBtn.setBackground(new Color(255,43,48));
         adminLogoutBtn.setBackground(new Color(255,43,48));    
         adminSplitPane.setRightComponent(adminStaffPanel);
-        System.out.println( adminSplitPane.getRightComponent().getName());
+//        System.out.println( adminSplitPane.getRightComponent().getName());
     }
 
     /**
@@ -211,7 +220,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         adminStudentsBtn.setBackground(new Color(255,43,48));
         adminLogoutBtn.setBackground(new Color(255,43,48));    
         adminSplitPane.setRightComponent(adminStaffPanel);
-        System.out.println( adminSplitPane.getRightComponent().getName());
+//        System.out.println( adminSplitPane.getRightComponent().getName());
     }//GEN-LAST:event_adminStaffBtnActionPerformed
 
     private void adminBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBooksBtnActionPerformed
@@ -222,7 +231,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         adminStudentsBtn.setBackground(new Color(255,43,48));
         adminLogoutBtn.setBackground(new Color(255,43,48));    
         adminSplitPane.setRightComponent(adminStaffPanel);
-        System.out.println( adminSplitPane.getRightComponent().getName());
+//        System.out.println( adminSplitPane.getRightComponent().getName());
     }//GEN-LAST:event_adminBooksBtnActionPerformed
 
     private void adminStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminStudentsBtnActionPerformed
@@ -233,11 +242,13 @@ public class AdminDashboard extends javax.swing.JFrame {
         adminStudentsBtn.setBackground(new Color(0,0,0));
         adminLogoutBtn.setBackground(new Color(255,43,48));    
         adminSplitPane.setRightComponent(studentsCrudPanel);
-        System.out.println( adminSplitPane.getRightComponent().getName());
+//        System.out.println( adminSplitPane.getRightComponent().getName());
     }//GEN-LAST:event_adminStudentsBtnActionPerformed
 
     private void adminLogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminLogoutBtnActionPerformed
         // TODO add your handling code here:
+        adminDashboard.setVisible(false);
+        LoginFrame.loginFrame.setVisible(true);
     }//GEN-LAST:event_adminLogoutBtnActionPerformed
 
     private void adminStaffBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminStaffBtnMouseEntered
