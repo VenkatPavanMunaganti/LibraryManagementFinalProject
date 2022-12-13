@@ -5,7 +5,10 @@
 package edu.neu.csye6200.librarymanagement.views;
 
 import edu.neu.csye6200.librarymanagement.models.Admin;
+import edu.neu.csye6200.librarymanagement.models.Staff;
+import edu.neu.csye6200.librarymanagement.models.Student;
 import edu.neu.csye6200.librarymanagement.models.User;
+import static edu.neu.csye6200.librarymanagement.models.User.UserRole.STAFF;
 import edu.neu.csye6200.librarymanagement.utils.OperatingSystem;
 import java.util.List;
 import javax.swing.JFrame;
@@ -86,11 +89,13 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
-        
+        System.out.println("in login fun");
         String username = usernameTxt.getText();
         String password = String.valueOf(passwordTxt.getPassword());
-
-        List<User> users = OperatingSystem.getInstance().getUsers();
+        
+        OperatingSystem os = OperatingSystem.getInstance();
+        System.out.println(os);
+        List<User> users = os.getUsers();
         
         User user = users.stream().filter(u -> u.getUsername().equals(username) && u.getPassword().equals(password)).findFirst().orElse(null);
         
@@ -104,7 +109,15 @@ public class LoginFrame extends javax.swing.JFrame {
                             AdminDashboard.adminDashboard.setVisible(true);
                             loginFrame.setVisible(false);
                             break;
-                
+                case STAFF: StaffDashboard.staffDashboard = new StaffDashboard((Staff) user);
+                            StaffDashboard.staffDashboard.setVisible(true);
+                            loginFrame.setVisible(false);
+                            break;
+                case STUDENT: StudentDashboard.studentDashboard = new StudentDashboard((Student) user);
+                            StudentDashboard.studentDashboard.setVisible(true);
+                            loginFrame.setVisible(false);
+                            break;
+                        
                 default: JOptionPane.showMessageDialog(rootPane, "Something went wrong. Please try again");
             }
         }

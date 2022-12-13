@@ -34,6 +34,13 @@ public class OperatingSystem {
         loadUsers();
         loadIssuedBooks();
         loadBooks();
+        System.out.println(users);
+        System.out.println(books);
+    }
+
+    @Override
+    public String toString() {
+        return "OperatingSystem{" + "users=" + users + ", books=" + books + ", issuedBooks=" + issuedBooks + '}';
     }
     
     public static OperatingSystem getInstance(){
