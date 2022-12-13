@@ -8,6 +8,7 @@ import edu.neu.csye6200.librarymanagement.models.Book;
 import edu.neu.csye6200.librarymanagement.utils.OperatingSystem;
 import java.awt.Color;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,6 +25,8 @@ public class BooksCrudPanel extends javax.swing.JPanel {
         initComponents();
         populateBooksList();
         populateBooksTable();
+        bookUpdateBtn.setEnabled(false);
+        bookDeleteBtn.setEnabled(false);
     }
 
     /**
@@ -52,9 +55,9 @@ public class BooksCrudPanel extends javax.swing.JPanel {
         bookQuantity = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         booksRemaining = new javax.swing.JTextField();
-        studentDeleteBtn = new javax.swing.JButton();
-        studentUpdateBtn = new javax.swing.JButton();
-        studentCreateBtn = new javax.swing.JButton();
+        bookDeleteBtn = new javax.swing.JButton();
+        bookUpdateBtn = new javax.swing.JButton();
+        bookCreateBtn = new javax.swing.JButton();
 
         setName("booksPanel"); // NOI18N
 
@@ -157,43 +160,53 @@ public class BooksCrudPanel extends javax.swing.JPanel {
             }
         });
 
-        studentDeleteBtn.setBackground(new java.awt.Color(255, 43, 45));
-        studentDeleteBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        studentDeleteBtn.setForeground(new java.awt.Color(255, 255, 255));
-        studentDeleteBtn.setText("Delete");
-        studentDeleteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        bookDeleteBtn.setBackground(new java.awt.Color(255, 43, 45));
+        bookDeleteBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bookDeleteBtn.setForeground(new java.awt.Color(255, 255, 255));
+        bookDeleteBtn.setText("Delete");
+        bookDeleteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                studentDeleteBtnMouseEntered(evt);
+                bookDeleteBtnMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                studentDeleteBtnMouseExited(evt);
+                bookDeleteBtnMouseExited(evt);
             }
         });
-
-        studentUpdateBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        studentUpdateBtn.setText("Update");
-        studentUpdateBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                studentUpdateBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                studentUpdateBtnMouseExited(evt);
-            }
-        });
-
-        studentCreateBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        studentCreateBtn.setText("Create");
-        studentCreateBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                studentCreateBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                studentCreateBtnMouseExited(evt);
-            }
-        });
-        studentCreateBtn.addActionListener(new java.awt.event.ActionListener() {
+        bookDeleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                studentCreateBtnActionPerformed(evt);
+                bookDeleteBtnActionPerformed(evt);
+            }
+        });
+
+        bookUpdateBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bookUpdateBtn.setText("Update");
+        bookUpdateBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bookUpdateBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bookUpdateBtnMouseExited(evt);
+            }
+        });
+        bookUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookUpdateBtnActionPerformed(evt);
+            }
+        });
+
+        bookCreateBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bookCreateBtn.setText("Create");
+        bookCreateBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bookCreateBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bookCreateBtnMouseExited(evt);
+            }
+        });
+        bookCreateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookCreateBtnActionPerformed(evt);
             }
         });
 
@@ -230,11 +243,11 @@ public class BooksCrudPanel extends javax.swing.JPanel {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(bookId, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(studentCreateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(bookCreateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(studentUpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(bookUpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(12, 12, 12)
-                                            .addComponent(studentDeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(bookDeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -288,9 +301,9 @@ public class BooksCrudPanel extends javax.swing.JPanel {
                         .addComponent(jLabel8)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(studentDeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(studentUpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(studentCreateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bookDeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bookUpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bookCreateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -319,43 +332,69 @@ public class BooksCrudPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_booksRemainingActionPerformed
 
-    private void studentDeleteBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentDeleteBtnMouseEntered
+    private void bookDeleteBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookDeleteBtnMouseEntered
         // TODO add your handling code here:
-        studentDeleteBtn.setBackground(new Color(0, 0, 0));
-    }//GEN-LAST:event_studentDeleteBtnMouseEntered
+        bookDeleteBtn.setBackground(new Color(0, 0, 0));
+    }//GEN-LAST:event_bookDeleteBtnMouseEntered
 
-    private void studentDeleteBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentDeleteBtnMouseExited
+    private void bookDeleteBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookDeleteBtnMouseExited
         // TODO add your handling code here:
-        studentDeleteBtn.setBackground(new Color(255, 43, 48));
-    }//GEN-LAST:event_studentDeleteBtnMouseExited
+        bookDeleteBtn.setBackground(new Color(255, 43, 48));
+    }//GEN-LAST:event_bookDeleteBtnMouseExited
 
-    private void studentUpdateBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentUpdateBtnMouseEntered
+    private void bookUpdateBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookUpdateBtnMouseEntered
         // TODO add your handling code here:
-        studentUpdateBtn.setBackground(new Color(0,0,0));
-        studentUpdateBtn.setForeground(new Color(255, 255, 255));
-    }//GEN-LAST:event_studentUpdateBtnMouseEntered
+        bookUpdateBtn.setBackground(new Color(0,0,0));
+        bookUpdateBtn.setForeground(new Color(255, 255, 255));
+    }//GEN-LAST:event_bookUpdateBtnMouseEntered
 
-    private void studentUpdateBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentUpdateBtnMouseExited
+    private void bookUpdateBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookUpdateBtnMouseExited
         // TODO add your handling code here:
-        studentUpdateBtn.setBackground(new Color(255,255,255));
-        studentUpdateBtn.setForeground(new Color(0, 0, 0));
-    }//GEN-LAST:event_studentUpdateBtnMouseExited
+        bookUpdateBtn.setBackground(new Color(255,255,255));
+        bookUpdateBtn.setForeground(new Color(0, 0, 0));
+    }//GEN-LAST:event_bookUpdateBtnMouseExited
 
-    private void studentCreateBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentCreateBtnMouseEntered
+    private void bookCreateBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookCreateBtnMouseEntered
         // TODO add your handling code here:
-        studentCreateBtn.setBackground(new Color(0,0,0));
-        studentCreateBtn.setForeground(new Color(255,255,255));
-    }//GEN-LAST:event_studentCreateBtnMouseEntered
+        bookCreateBtn.setBackground(new Color(0,0,0));
+        bookCreateBtn.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_bookCreateBtnMouseEntered
 
-    private void studentCreateBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentCreateBtnMouseExited
+    private void bookCreateBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookCreateBtnMouseExited
         // TODO add your handling code here:
-        studentCreateBtn.setBackground(new Color(255,255,255));
-        studentCreateBtn.setForeground(new Color(0, 0, 0));
-    }//GEN-LAST:event_studentCreateBtnMouseExited
+        bookCreateBtn.setBackground(new Color(255,255,255));
+        bookCreateBtn.setForeground(new Color(0, 0, 0));
+    }//GEN-LAST:event_bookCreateBtnMouseExited
 
-    private void studentCreateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentCreateBtnActionPerformed
+    private void bookCreateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookCreateBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_studentCreateBtnActionPerformed
+        String id = bookId.getText();
+        String name= bookName.getText();
+        String author = bookAuthor.getText();
+        String publisher = bookPublisher.getText();
+        int edition = Integer.parseInt(bookEdition.getText());
+        int quantity = Integer.parseInt(bookQuantity.getText());
+        int remaining = Integer.parseInt(booksRemaining.getText());
+        
+        if(booksList.stream().map(book -> book.getId()).toList().contains("id")){
+            JOptionPane.showMessageDialog(this, "Book with this ID already exists");
+            return;
+        }
+        
+        booksList.add(new Book(id,name,author,publisher,edition,quantity,remaining));
+        OperatingSystem.getInstance().writeBooks();
+        
+        bookId.setText("");
+        bookName.setText("");
+        bookAuthor.setText("");
+        bookPublisher.setText("");
+        bookEdition.setText("");
+        bookQuantity.setText("");
+        booksRemaining.setText("");
+            
+        populateBooksList();
+        populateBooksTable();
+    }//GEN-LAST:event_bookCreateBtnActionPerformed
 
     private void booksTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_booksTableMouseClicked
         // TODO add your handling code here:
@@ -368,6 +407,10 @@ public class BooksCrudPanel extends javax.swing.JPanel {
             bookEdition.setText(String.valueOf(book.getBookEdition()));
             bookQuantity.setText(String.valueOf(book.getBookQuantity()));
             booksRemaining.setText(String.valueOf(book.getRemainingBooks()));
+            bookCreateBtn.setEnabled(false);
+            bookUpdateBtn.setEnabled(true);
+            bookDeleteBtn.setEnabled(true);
+            bookId.setEnabled(false);
         }
         else{
             bookId.setText("");
@@ -377,17 +420,90 @@ public class BooksCrudPanel extends javax.swing.JPanel {
             bookEdition.setText("");
             bookQuantity.setText("");
             booksRemaining.setText("");
+            bookCreateBtn.setEnabled(true);
+            bookUpdateBtn.setEnabled(false);
+            bookDeleteBtn.setEnabled(false);
         }
+        
+        
     }//GEN-LAST:event_booksTableMouseClicked
+
+    private void bookUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookUpdateBtnActionPerformed
+        // TODO add your handling code here:
+        String id = bookId.getText();
+        String name= bookName.getText();
+        String author = bookAuthor.getText();
+        String publisher = bookPublisher.getText();
+        int edition = Integer.parseInt(bookEdition.getText());
+        int quantity = Integer.parseInt(bookQuantity.getText());
+        int remaining = Integer.parseInt(booksRemaining.getText());
+        
+        Book book = booksList.stream().filter( b -> b.getId().equals(id)).findFirst().orElse(null);
+        
+        book.setBookName(name);
+        book.setBookAuthor(author);
+        book.setBookPublisher(publisher);
+        book.setBookEdition(edition);
+        book.setBookQuantity(quantity);
+        book.setRemainingBooks(remaining);
+        
+        bookId.setText("");
+        bookName.setText("");
+        bookAuthor.setText("");
+        bookPublisher.setText("");
+        bookEdition.setText("");
+        bookQuantity.setText("");
+        booksRemaining.setText("");
+            
+        populateBooksList();
+        populateBooksTable();
+        
+        bookId.setEnabled(true);
+        bookCreateBtn.setEnabled(true);
+        bookUpdateBtn.setEnabled(false);
+        bookDeleteBtn.setEnabled(false);
+        
+    }//GEN-LAST:event_bookUpdateBtnActionPerformed
+
+    private void bookDeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookDeleteBtnActionPerformed
+        // TODO add your handling code here:
+        
+        if(JOptionPane.showConfirmDialog(this, "Do you really want to delete this book") == JOptionPane.YES_OPTION){
+            String id = bookId.getText();
+            Book book = booksList.stream().filter( b -> b.getId().equals(id)).findFirst().orElse(null);
+            booksList.remove(book);
+            
+            OperatingSystem.getInstance().writeBooks();
+            
+            bookId.setText("");
+            bookName.setText("");
+            bookAuthor.setText("");
+            bookPublisher.setText("");
+            bookEdition.setText("");
+            bookQuantity.setText("");
+            booksRemaining.setText("");
+
+            populateBooksList();
+            populateBooksTable();
+            
+            bookId.setEnabled(true);
+            bookCreateBtn.setEnabled(true);
+            bookUpdateBtn.setEnabled(false);
+            bookDeleteBtn.setEnabled(false);
+        }
+    }//GEN-LAST:event_bookDeleteBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bookAuthor;
+    private javax.swing.JButton bookCreateBtn;
+    private javax.swing.JButton bookDeleteBtn;
     private javax.swing.JTextField bookEdition;
     private javax.swing.JTextField bookId;
     private javax.swing.JTextField bookName;
     private javax.swing.JTextField bookPublisher;
     private javax.swing.JTextField bookQuantity;
+    private javax.swing.JButton bookUpdateBtn;
     private javax.swing.JTextField booksRemaining;
     private javax.swing.JTable booksTable;
     private javax.swing.JLabel jLabel1;
@@ -399,9 +515,6 @@ public class BooksCrudPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton studentCreateBtn;
-    private javax.swing.JButton studentDeleteBtn;
-    private javax.swing.JButton studentUpdateBtn;
     // End of variables declaration//GEN-END:variables
 
     private void populateBooksTable(){
