@@ -8,6 +8,11 @@ import edu.neu.csye6200.librarymanagement.models.Student;
 import edu.neu.csye6200.librarymanagement.models.User;
 import edu.neu.csye6200.librarymanagement.models.User.UserRole;
 import edu.neu.csye6200.librarymanagement.utils.OperatingSystem;
+import edu.neu.csye6200.librarymanagement.validators.EmailVerifier;
+import edu.neu.csye6200.librarymanagement.validators.IdVerifier;
+import edu.neu.csye6200.librarymanagement.validators.NumberVerifier;
+import edu.neu.csye6200.librarymanagement.validators.UsernameVerifier;
+import edu.neu.csye6200.librarymanagement.validators.WordVerifier;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -89,6 +94,7 @@ public class StudentsCrudPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(adminStudentTable);
 
+        adminStudentFname.setInputVerifier(new WordVerifier());
         adminStudentFname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adminStudentFnameActionPerformed(evt);
@@ -101,6 +107,7 @@ public class StudentsCrudPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Mail Id");
 
+        adminStudentMail.setInputVerifier(new EmailVerifier());
         adminStudentMail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adminStudentMailActionPerformed(evt);
@@ -110,6 +117,7 @@ public class StudentsCrudPanel extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Username");
 
+        adminStudentUsername.setInputVerifier(new UsernameVerifier());
         adminStudentUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adminStudentUsernameActionPerformed(evt);
@@ -119,12 +127,14 @@ public class StudentsCrudPanel extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Last Name");
 
+        adminStudentLname.setInputVerifier(new WordVerifier());
         adminStudentLname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adminStudentLnameActionPerformed(evt);
             }
         });
 
+        adminStudentPhoneNo.setInputVerifier(new NumberVerifier());
         adminStudentPhoneNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adminStudentPhoneNoActionPerformed(evt);
@@ -140,6 +150,8 @@ public class StudentsCrudPanel extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(204, 0, 0));
         jLabel9.setText("Husky Id");
+
+        adminStudentId.setInputVerifier(new IdVerifier());
 
         adminStudentUpdateBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         adminStudentUpdateBtn.setText("Update");

@@ -47,6 +47,7 @@ public class StudentDashboard extends javax.swing.JFrame {
         studentProfile = new javax.swing.JButton();
         studentBooksBorrowed = new javax.swing.JButton();
         studentLogout = new javax.swing.JButton();
+        studentSearchBooks = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -91,6 +92,17 @@ public class StudentDashboard extends javax.swing.JFrame {
             }
         });
 
+        studentSearchBooks.setBackground(new java.awt.Color(204, 0, 0));
+        studentSearchBooks.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        studentSearchBooks.setForeground(new java.awt.Color(255, 255, 255));
+        studentSearchBooks.setText("Search Books");
+        studentSearchBooks.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        studentSearchBooks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentSearchBooksActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -98,21 +110,24 @@ public class StudentDashboard extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(studentSearchBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(studentProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(studentBooksBorrowed, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(studentLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addComponent(studentLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(studentBooksBorrowed, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addComponent(studentProfile)
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
+                .addComponent(studentSearchBooks)
+                .addGap(18, 18, 18)
                 .addComponent(studentBooksBorrowed)
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
                 .addComponent(studentLogout)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(51, 51, 51))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -127,7 +142,7 @@ public class StudentDashboard extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(283, 283, 283)
+                .addGap(195, 195, 195)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(319, Short.MAX_VALUE))
         );
@@ -138,7 +153,7 @@ public class StudentDashboard extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 990, Short.MAX_VALUE)
+            .addGap(0, 825, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,6 +181,7 @@ public class StudentDashboard extends javax.swing.JFrame {
         ProfilePanel profilePanel= new ProfilePanel(student);
         studentSplitPane.setRightComponent(profilePanel);
         studentProfile.setBackground(new Color(0,0,0));
+        studentSearchBooks.setBackground(new Color(204, 0, 0));
         studentBooksBorrowed.setBackground(new Color(204, 0, 0));
         studentLogout.setBackground(new Color(204, 0, 0));
     }//GEN-LAST:event_studentProfileActionPerformed
@@ -175,6 +191,7 @@ public class StudentDashboard extends javax.swing.JFrame {
         StudentBooksBorrowed studentBooksBorrowedPanel= new StudentBooksBorrowed(student);
         studentSplitPane.setRightComponent(studentBooksBorrowedPanel);
         studentProfile.setBackground(new Color(204, 0, 0));
+        studentSearchBooks.setBackground(new Color(204, 0, 0));
         studentBooksBorrowed.setBackground(new Color(0,0,0));
         studentLogout.setBackground(new Color(204, 0, 0));
     }//GEN-LAST:event_studentBooksBorrowedActionPerformed
@@ -185,6 +202,16 @@ public class StudentDashboard extends javax.swing.JFrame {
         LoginFrame.loginFrame.setVisible(true);
     }//GEN-LAST:event_studentLogoutActionPerformed
 
+    private void studentSearchBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentSearchBooksActionPerformed
+        // TODO add your handling code here:
+        SearchBooks searchBooks = new SearchBooks();
+        studentSplitPane.setRightComponent(searchBooks);
+        studentProfile.setBackground(new Color(204, 0, 0));
+        studentSearchBooks.setBackground(new Color(0, 0, 0));
+        studentBooksBorrowed.setBackground(new Color(204,0,0));
+        studentLogout.setBackground(new Color(204, 0, 0));
+    }//GEN-LAST:event_studentSearchBooksActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
@@ -193,6 +220,7 @@ public class StudentDashboard extends javax.swing.JFrame {
     private javax.swing.JButton studentBooksBorrowed;
     private javax.swing.JButton studentLogout;
     private javax.swing.JButton studentProfile;
+    private javax.swing.JButton studentSearchBooks;
     private javax.swing.JSplitPane studentSplitPane;
     // End of variables declaration//GEN-END:variables
 }

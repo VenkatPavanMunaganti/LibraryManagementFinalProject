@@ -6,6 +6,10 @@ package edu.neu.csye6200.librarymanagement.views;
 
 import edu.neu.csye6200.librarymanagement.models.User;
 import edu.neu.csye6200.librarymanagement.utils.OperatingSystem;
+import edu.neu.csye6200.librarymanagement.validators.EmailVerifier;
+import edu.neu.csye6200.librarymanagement.validators.NumberVerifier;
+import edu.neu.csye6200.librarymanagement.validators.UsernameVerifier;
+import edu.neu.csye6200.librarymanagement.validators.WordVerifier;
 import javax.swing.JOptionPane;
 
 /**
@@ -71,19 +75,29 @@ public class ProfilePanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("First Name");
 
+        profileFirstName.setInputVerifier(new WordVerifier());
+
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Last Name");
+
+        profileLastName.setInputVerifier(new WordVerifier());
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Mail Id");
 
+        profileMailID.setInputVerifier(new EmailVerifier());
+
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Phone No");
+
+        profilePhoneNo.setInputVerifier(new NumberVerifier());
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Username");
+
+        profileUsername.setInputVerifier(new UsernameVerifier());
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("Password");
@@ -114,7 +128,7 @@ public class ProfilePanel extends javax.swing.JPanel {
                         .addGap(410, 410, 410)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(311, 311, 311)
+                        .addGap(329, 329, 329)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel2)
@@ -146,7 +160,7 @@ public class ProfilePanel extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(profileUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
                                     .addComponent(profilePassword))))))
-                .addContainerGap(326, Short.MAX_VALUE))
+                .addContainerGap(324, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

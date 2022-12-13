@@ -6,6 +6,9 @@ package edu.neu.csye6200.librarymanagement.views;
 
 import edu.neu.csye6200.librarymanagement.models.Book;
 import edu.neu.csye6200.librarymanagement.utils.OperatingSystem;
+import edu.neu.csye6200.librarymanagement.validators.IdVerifier;
+import edu.neu.csye6200.librarymanagement.validators.NumberVerifier;
+import edu.neu.csye6200.librarymanagement.validators.WordVerifier;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -106,9 +109,12 @@ public class BooksCrudPanel extends javax.swing.JPanel {
         jLabel9.setForeground(new java.awt.Color(204, 0, 0));
         jLabel9.setText("Book Id");
 
+        bookId.setInputVerifier(new IdVerifier());
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Book Name");
 
+        bookName.setInputVerifier(new WordVerifier());
         bookName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bookNameActionPerformed(evt);
@@ -118,6 +124,7 @@ public class BooksCrudPanel extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Edition");
 
+        bookEdition.setInputVerifier(new NumberVerifier());
         bookEdition.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bookEditionActionPerformed(evt);
@@ -127,6 +134,7 @@ public class BooksCrudPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Author");
 
+        bookAuthor.setInputVerifier(new WordVerifier());
         bookAuthor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bookAuthorActionPerformed(evt);
@@ -136,6 +144,7 @@ public class BooksCrudPanel extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Publisher");
 
+        bookPublisher.setInputVerifier(new WordVerifier());
         bookPublisher.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bookPublisherActionPerformed(evt);
@@ -145,6 +154,7 @@ public class BooksCrudPanel extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Quantity");
 
+        bookQuantity.setInputVerifier(new NumberVerifier());
         bookQuantity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bookQuantityActionPerformed(evt);
@@ -154,6 +164,7 @@ public class BooksCrudPanel extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setText("Remaining");
 
+        booksRemaining.setInputVerifier(new NumberVerifier());
         booksRemaining.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 booksRemainingActionPerformed(evt);

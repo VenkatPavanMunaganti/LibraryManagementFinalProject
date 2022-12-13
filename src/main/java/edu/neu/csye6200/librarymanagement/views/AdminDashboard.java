@@ -29,7 +29,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         this.admin = admin;
         AdminStaffPanel adminStaffPanel = new AdminStaffPanel();
         adminStaffBtn.setBackground(new Color(0,0,0));
-        adminBooksBtn.setBackground(new Color(255,43,48));
+        adminManageBooksBtn.setBackground(new Color(255,43,48));
         adminStudentsBtn.setBackground(new Color(255,43,48));
         adminLogoutBtn.setBackground(new Color(255,43,48));    
         adminSplitPane.setRightComponent(adminStaffPanel);
@@ -48,10 +48,11 @@ public class AdminDashboard extends javax.swing.JFrame {
         adminSplitPane = new javax.swing.JSplitPane();
         adminMenuPane = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        adminBooksBtn = new javax.swing.JButton();
-        adminStaffBtn = new javax.swing.JButton();
+        adminManageBooksBtn = new javax.swing.JButton();
         adminLogoutBtn = new javax.swing.JButton();
         adminStudentsBtn = new javax.swing.JButton();
+        adminSearchBooksBtn = new javax.swing.JButton();
+        adminStaffBtn = new javax.swing.JButton();
         adminContentPane = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,49 +60,30 @@ public class AdminDashboard extends javax.swing.JFrame {
         adminSplitPane.setDividerLocation(200);
         adminSplitPane.setDividerSize(3);
 
-        adminMenuPane.setBackground(new java.awt.Color(255, 43, 48));
+        adminMenuPane.setBackground(new java.awt.Color(204, 0, 0));
 
-        jPanel3.setBackground(new java.awt.Color(255, 43, 48));
+        jPanel3.setBackground(new java.awt.Color(204, 0, 0));
 
-        adminBooksBtn.setBackground(new java.awt.Color(255, 43, 48));
-        adminBooksBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        adminBooksBtn.setForeground(new java.awt.Color(255, 255, 255));
-        adminBooksBtn.setText("Books");
-        adminBooksBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        adminBooksBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        adminManageBooksBtn.setBackground(new java.awt.Color(204, 0, 0));
+        adminManageBooksBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        adminManageBooksBtn.setForeground(new java.awt.Color(255, 255, 255));
+        adminManageBooksBtn.setText("Manage Books");
+        adminManageBooksBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        adminManageBooksBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                adminBooksBtnMouseEntered(evt);
+                adminManageBooksBtnMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                adminBooksBtnMouseExited(evt);
+                adminManageBooksBtnMouseExited(evt);
             }
         });
-        adminBooksBtn.addActionListener(new java.awt.event.ActionListener() {
+        adminManageBooksBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminBooksBtnActionPerformed(evt);
+                adminManageBooksBtnActionPerformed(evt);
             }
         });
 
-        adminStaffBtn.setBackground(new java.awt.Color(255, 43, 48));
-        adminStaffBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        adminStaffBtn.setForeground(new java.awt.Color(255, 255, 255));
-        adminStaffBtn.setText("Staff");
-        adminStaffBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        adminStaffBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                adminStaffBtnMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                adminStaffBtnMouseExited(evt);
-            }
-        });
-        adminStaffBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminStaffBtnActionPerformed(evt);
-            }
-        });
-
-        adminLogoutBtn.setBackground(new java.awt.Color(255, 43, 48));
+        adminLogoutBtn.setBackground(new java.awt.Color(204, 0, 0));
         adminLogoutBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         adminLogoutBtn.setForeground(new java.awt.Color(255, 255, 255));
         adminLogoutBtn.setText("Logout");
@@ -120,7 +102,7 @@ public class AdminDashboard extends javax.swing.JFrame {
             }
         });
 
-        adminStudentsBtn.setBackground(new java.awt.Color(255, 43, 48));
+        adminStudentsBtn.setBackground(new java.awt.Color(204, 0, 0));
         adminStudentsBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         adminStudentsBtn.setForeground(new java.awt.Color(255, 255, 255));
         adminStudentsBtn.setText("Students");
@@ -139,31 +121,72 @@ public class AdminDashboard extends javax.swing.JFrame {
             }
         });
 
+        adminSearchBooksBtn.setBackground(new java.awt.Color(204, 0, 0));
+        adminSearchBooksBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        adminSearchBooksBtn.setForeground(new java.awt.Color(255, 255, 255));
+        adminSearchBooksBtn.setText("Search Books");
+        adminSearchBooksBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        adminSearchBooksBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                adminSearchBooksBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                adminSearchBooksBtnMouseExited(evt);
+            }
+        });
+        adminSearchBooksBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminSearchBooksBtnActionPerformed(evt);
+            }
+        });
+
+        adminStaffBtn.setBackground(new java.awt.Color(204, 0, 0));
+        adminStaffBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        adminStaffBtn.setForeground(new java.awt.Color(255, 255, 255));
+        adminStaffBtn.setText("Staff");
+        adminStaffBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        adminStaffBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                adminStaffBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                adminStaffBtnMouseExited(evt);
+            }
+        });
+        adminStaffBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminStaffBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(adminLogoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(adminStudentsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(adminBooksBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(adminStaffBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(adminStaffBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(adminManageBooksBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(adminStudentsBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(adminSearchBooksBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(adminLogoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addComponent(adminStaffBtn)
                 .addGap(18, 18, 18)
-                .addComponent(adminBooksBtn)
+                .addComponent(adminManageBooksBtn)
+                .addGap(18, 18, 18)
+                .addComponent(adminSearchBooksBtn)
                 .addGap(18, 18, 18)
                 .addComponent(adminStudentsBtn)
                 .addGap(18, 18, 18)
                 .addComponent(adminLogoutBtn)
-                .addContainerGap())
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout adminMenuPaneLayout = new javax.swing.GroupLayout(adminMenuPane);
@@ -171,16 +194,16 @@ public class AdminDashboard extends javax.swing.JFrame {
         adminMenuPaneLayout.setHorizontalGroup(
             adminMenuPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminMenuPaneLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         adminMenuPaneLayout.setVerticalGroup(
             adminMenuPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminMenuPaneLayout.createSequentialGroup()
-                .addGap(248, 248, 248)
+                .addGap(278, 278, 278)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(337, Short.MAX_VALUE))
+                .addContainerGap(189, Short.MAX_VALUE))
         );
 
         adminSplitPane.setLeftComponent(adminMenuPane);
@@ -189,7 +212,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         adminContentPane.setLayout(adminContentPaneLayout);
         adminContentPaneLayout.setHorizontalGroup(
             adminContentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 987, Short.MAX_VALUE)
+            .addGap(0, 973, Short.MAX_VALUE)
         );
         adminContentPaneLayout.setVerticalGroup(
             adminContentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,7 +225,10 @@ public class AdminDashboard extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(adminSplitPane)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(adminSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1178, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,29 +242,32 @@ public class AdminDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         AdminStaffPanel adminStaffPanel = new AdminStaffPanel();
         adminStaffBtn.setBackground(new Color(0,0,0));
-        adminBooksBtn.setBackground(new Color(255,43,48));
+        adminSearchBooksBtn.setBackground(new Color(255,43,48));
+        adminManageBooksBtn.setBackground(new Color(255,43,48));
         adminStudentsBtn.setBackground(new Color(255,43,48));
         adminLogoutBtn.setBackground(new Color(255,43,48));    
         adminSplitPane.setRightComponent(adminStaffPanel);
 //        System.out.println( adminSplitPane.getRightComponent().getName());
     }//GEN-LAST:event_adminStaffBtnActionPerformed
 
-    private void adminBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBooksBtnActionPerformed
+    private void adminManageBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminManageBooksBtnActionPerformed
         // TODO add your handling code here:
-        BooksCrudPanel adminStaffPanel = new BooksCrudPanel();
+        BooksCrudPanel booksCrudPanel = new BooksCrudPanel();
         adminStaffBtn.setBackground(new Color(255,43,48));
-        adminBooksBtn.setBackground(new Color(0,0,0));
+        adminSearchBooksBtn.setBackground(new Color(255,43,48));
+        adminManageBooksBtn.setBackground(new Color(0,0,0));
         adminStudentsBtn.setBackground(new Color(255,43,48));
         adminLogoutBtn.setBackground(new Color(255,43,48));    
-        adminSplitPane.setRightComponent(adminStaffPanel);
+        adminSplitPane.setRightComponent(booksCrudPanel);
 //        System.out.println( adminSplitPane.getRightComponent().getName());
-    }//GEN-LAST:event_adminBooksBtnActionPerformed
+    }//GEN-LAST:event_adminManageBooksBtnActionPerformed
 
     private void adminStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminStudentsBtnActionPerformed
         // TODO add your handling code here:
         StudentsCrudPanel studentsCrudPanel = new StudentsCrudPanel();
         adminStaffBtn.setBackground(new Color(255,43,48));
-        adminBooksBtn.setBackground(new Color(255,43,48));
+        adminSearchBooksBtn.setBackground(new Color(255,43,48));
+        adminManageBooksBtn.setBackground(new Color(255,43,48));
         adminStudentsBtn.setBackground(new Color(0,0,0));
         adminLogoutBtn.setBackground(new Color(255,43,48));    
         adminSplitPane.setRightComponent(studentsCrudPanel);
@@ -263,17 +292,17 @@ public class AdminDashboard extends javax.swing.JFrame {
             adminStaffBtn.setBackground(new Color(255, 43, 48));
     }//GEN-LAST:event_adminStaffBtnMouseExited
 
-    private void adminBooksBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminBooksBtnMouseEntered
+    private void adminManageBooksBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminManageBooksBtnMouseEntered
         // TODO add your handling code here:
-        adminBooksBtn.setBackground(new Color(0, 0, 0));
-    }//GEN-LAST:event_adminBooksBtnMouseEntered
+        adminManageBooksBtn.setBackground(new Color(0, 0, 0));
+    }//GEN-LAST:event_adminManageBooksBtnMouseEntered
 
-    private void adminBooksBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminBooksBtnMouseExited
+    private void adminManageBooksBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminManageBooksBtnMouseExited
         // TODO add your handling code here:
         String rightComponentName= adminSplitPane.getRightComponent().getName();
         if(rightComponentName!=null && !rightComponentName.equals("booksPanel"))
-            adminBooksBtn.setBackground(new Color(255, 43, 48));
-    }//GEN-LAST:event_adminBooksBtnMouseExited
+            adminManageBooksBtn.setBackground(new Color(255, 43, 48));
+    }//GEN-LAST:event_adminManageBooksBtnMouseExited
 
     private void adminStudentsBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminStudentsBtnMouseEntered
         // TODO add your handling code here:
@@ -296,6 +325,27 @@ public class AdminDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         adminLogoutBtn.setBackground(new Color(255, 43, 48));
     }//GEN-LAST:event_adminLogoutBtnMouseExited
+
+    private void adminSearchBooksBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminSearchBooksBtnMouseEntered
+        // TODO add your handling code here:
+         adminSearchBooksBtn.setBackground(new Color(0, 0, 0));
+    }//GEN-LAST:event_adminSearchBooksBtnMouseEntered
+
+    private void adminSearchBooksBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminSearchBooksBtnMouseExited
+        // TODO add your handling code here:
+        adminSearchBooksBtn.setBackground(new Color(255, 43, 48));
+    }//GEN-LAST:event_adminSearchBooksBtnMouseExited
+
+    private void adminSearchBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminSearchBooksBtnActionPerformed
+        // TODO add your handling code here:
+        SearchBooks searchBooksPanel = new SearchBooks();
+        adminStaffBtn.setBackground(new Color(255,43,48));
+        adminSearchBooksBtn.setBackground(new Color(0,0,0));
+        adminManageBooksBtn.setBackground(new Color(255,43,48));
+        adminStudentsBtn.setBackground(new Color(255,43,48));
+        adminLogoutBtn.setBackground(new Color(255,43,48));    
+        adminSplitPane.setRightComponent(searchBooksPanel);
+    }//GEN-LAST:event_adminSearchBooksBtnActionPerformed
     
     
     
@@ -335,10 +385,11 @@ public class AdminDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton adminBooksBtn;
     private javax.swing.JPanel adminContentPane;
     private javax.swing.JButton adminLogoutBtn;
+    private javax.swing.JButton adminManageBooksBtn;
     private javax.swing.JPanel adminMenuPane;
+    private javax.swing.JButton adminSearchBooksBtn;
     private javax.swing.JSplitPane adminSplitPane;
     private javax.swing.JButton adminStaffBtn;
     private javax.swing.JButton adminStudentsBtn;

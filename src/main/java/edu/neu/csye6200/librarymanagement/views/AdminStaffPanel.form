@@ -209,6 +209,11 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JTextField" name="adminStaffFname">
+      <Properties>
+        <Property name="inputVerifier" type="javax.swing.InputVerifier" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new WordVerifier()" type="code"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminStaffFnameActionPerformed"/>
       </Events>
@@ -230,6 +235,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="adminStaffMail">
+      <Properties>
+        <Property name="inputVerifier" type="javax.swing.InputVerifier" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new EmailVerifier()" type="code"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminStaffMailActionPerformed"/>
       </Events>
@@ -243,6 +253,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="adminStaffUsername">
+      <Properties>
+        <Property name="inputVerifier" type="javax.swing.InputVerifier" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new UsernameVerifier()" type="code"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminStaffUsernameActionPerformed"/>
       </Events>
@@ -256,11 +271,21 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="adminStaffLname">
+      <Properties>
+        <Property name="inputVerifier" type="javax.swing.InputVerifier" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new WordVerifier()" type="code"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminStaffLnameActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="adminStaffPhoneNo">
+      <Properties>
+        <Property name="inputVerifier" type="javax.swing.InputVerifier" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new NumberVerifier()" type="code"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminStaffPhoneNoActionPerformed"/>
       </Events>
@@ -293,6 +318,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="adminStaffId">
+      <Properties>
+        <Property name="inputVerifier" type="javax.swing.InputVerifier" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new IdVerifier()" type="code"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="adminStaffUpdateBtn">
       <Properties>

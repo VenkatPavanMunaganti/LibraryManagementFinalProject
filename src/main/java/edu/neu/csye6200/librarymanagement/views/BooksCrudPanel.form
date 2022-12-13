@@ -236,6 +236,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="bookId">
+      <Properties>
+        <Property name="inputVerifier" type="javax.swing.InputVerifier" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new IdVerifier()" type="code"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -246,6 +251,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="bookName">
+      <Properties>
+        <Property name="inputVerifier" type="javax.swing.InputVerifier" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new WordVerifier()" type="code"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bookNameActionPerformed"/>
       </Events>
@@ -259,6 +269,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="bookEdition">
+      <Properties>
+        <Property name="inputVerifier" type="javax.swing.InputVerifier" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new NumberVerifier()" type="code"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bookEditionActionPerformed"/>
       </Events>
@@ -272,6 +287,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="bookAuthor">
+      <Properties>
+        <Property name="inputVerifier" type="javax.swing.InputVerifier" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new WordVerifier()" type="code"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bookAuthorActionPerformed"/>
       </Events>
@@ -285,6 +305,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="bookPublisher">
+      <Properties>
+        <Property name="inputVerifier" type="javax.swing.InputVerifier" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new WordVerifier()" type="code"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bookPublisherActionPerformed"/>
       </Events>
@@ -298,6 +323,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="bookQuantity">
+      <Properties>
+        <Property name="inputVerifier" type="javax.swing.InputVerifier" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new NumberVerifier()" type="code"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bookQuantityActionPerformed"/>
       </Events>
@@ -311,6 +341,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="booksRemaining">
+      <Properties>
+        <Property name="inputVerifier" type="javax.swing.InputVerifier" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new NumberVerifier()" type="code"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="booksRemainingActionPerformed"/>
       </Events>
