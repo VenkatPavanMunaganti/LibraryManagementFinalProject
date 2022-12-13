@@ -27,6 +27,7 @@ public class IssuedBook {
         this.issuedBookID = issuedBookID;
         this.issuedPersonID = issuedPersonID;
         this.issuedDate = issuedDate;
+        this.totalDaysIssued=totalDaysIssued;
         LocalDate today = LocalDate.now();
         Period p = Period.between(issuedDate, today);
         int r = totalDaysIssued - p.getDays();
@@ -40,7 +41,7 @@ public class IssuedBook {
         try{
             String ibID = sc.next();
             String ipID = sc.next();
-            DateTimeFormatter formatters = DateTimeFormatter.ofPattern("d/MM/uuuu");
+            DateTimeFormatter formatters = DateTimeFormatter.ofPattern("uuuu-MM-d");
             String dt= sc.next();
             LocalDate iDate = LocalDate.parse(dt, formatters);
             int tdIssued = Integer.parseInt(sc.next());
@@ -111,7 +112,7 @@ public class IssuedBook {
 
     @Override
     public String toString() {
-        return issuedBookID + "," + issuedDate.toString() + "," + totalDaysIssued + "," + remainingDays + "," +lateFee;
+        return issuedBookID + "," + issuedPersonID +"," + issuedDate.toString() + "," + totalDaysIssued;
     }
     
 }
