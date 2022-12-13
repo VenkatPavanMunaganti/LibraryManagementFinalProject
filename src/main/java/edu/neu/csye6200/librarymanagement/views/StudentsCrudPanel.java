@@ -4,7 +4,14 @@
  */
 package edu.neu.csye6200.librarymanagement.views;
 
+import edu.neu.csye6200.librarymanagement.models.Student;
+import edu.neu.csye6200.librarymanagement.models.User;
+import edu.neu.csye6200.librarymanagement.models.User.UserRole;
+import edu.neu.csye6200.librarymanagement.utils.OperatingSystem;
 import java.awt.Color;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,11 +19,16 @@ import java.awt.Color;
  */
 public class StudentsCrudPanel extends javax.swing.JPanel {
 
+    private List<User> studentsList;
     /**
      * Creates new form AdminBooksPanel
      */
     public StudentsCrudPanel() {
         initComponents();
+        populateStudentsList();
+        populateStudentsTable();
+        adminStudentUpdateBtn.setEnabled(false);
+        adminStudentDeleteBtn.setEnabled(false);
     }
 
     /**
@@ -34,26 +46,20 @@ public class StudentsCrudPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         adminStudentMail = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         adminStudentUsername = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         adminStudentLname = new javax.swing.JTextField();
         adminStudentPhoneNo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        adminStudentPassword = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         adminStudentId = new javax.swing.JTextField();
-        adminStudentRadioMale = new javax.swing.JRadioButton();
-        adminStudentRadioFemale = new javax.swing.JRadioButton();
-        adminStudentRadioOther = new javax.swing.JRadioButton();
         adminStudentUpdateBtn = new javax.swing.JButton();
         adminStudentDeleteBtn = new javax.swing.JButton();
         adminStudentCreateBtn = new javax.swing.JButton();
-        adminStudentDOB = new com.toedter.calendar.JDateChooser();
         jLabel10 = new javax.swing.JLabel();
+        adminStudentPassword = new javax.swing.JPasswordField();
 
         setName("adminStudentsPanel"); // NOI18N
 
@@ -65,15 +71,20 @@ public class StudentsCrudPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Husky Id", "First Name", "Last Name", "Email Id", "Phone No", "Username"
+                "Husky Id", "First Name", "Last Name", "Email Id", "Phone Number", "Username"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        adminStudentTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                adminStudentTableMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(adminStudentTable);
@@ -95,9 +106,6 @@ public class StudentsCrudPanel extends javax.swing.JPanel {
                 adminStudentMailActionPerformed(evt);
             }
         });
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("Gender");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Username");
@@ -126,27 +134,12 @@ public class StudentsCrudPanel extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Phone No");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setText("Birth Date");
-
-        adminStudentPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminStudentPasswordActionPerformed(evt);
-            }
-        });
-
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setText("Password");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(204, 0, 0));
         jLabel9.setText("Husky Id");
-
-        adminStudentRadioMale.setText("Male");
-
-        adminStudentRadioFemale.setText("Female");
-
-        adminStudentRadioOther.setText("Other");
 
         adminStudentUpdateBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         adminStudentUpdateBtn.setText("Update");
@@ -156,6 +149,11 @@ public class StudentsCrudPanel extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 adminStudentUpdateBtnMouseExited(evt);
+            }
+        });
+        adminStudentUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminStudentUpdateBtnActionPerformed(evt);
             }
         });
 
@@ -169,6 +167,11 @@ public class StudentsCrudPanel extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 adminStudentDeleteBtnMouseExited(evt);
+            }
+        });
+        adminStudentDeleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminStudentDeleteBtnActionPerformed(evt);
             }
         });
 
@@ -194,6 +197,12 @@ public class StudentsCrudPanel extends javax.swing.JPanel {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Student Management");
 
+        adminStudentPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminStudentPasswordActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -209,25 +218,11 @@ public class StudentsCrudPanel extends javax.swing.JPanel {
                                 .addGap(154, 154, 154)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(adminStudentMail, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(adminStudentUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(adminStudentRadioMale)
-                                                .addGap(27, 27, 27)
-                                                .addComponent(adminStudentRadioFemale)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(adminStudentRadioOther)))
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(adminStudentMail, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(65, 65, 65)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -235,15 +230,7 @@ public class StudentsCrudPanel extends javax.swing.JPanel {
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(adminStudentPhoneNo, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(adminStudentDOB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(adminStudentPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(adminStudentPhoneNo, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -252,12 +239,21 @@ public class StudentsCrudPanel extends javax.swing.JPanel {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(adminStudentFname, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(adminStudentId, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(adminStudentCreateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(adminStudentUpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(12, 12, 12)
-                                        .addComponent(adminStudentDeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(adminStudentUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(65, 65, 65)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(adminStudentPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(adminStudentCreateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(adminStudentUpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(12, 12, 12)
+                                            .addComponent(adminStudentDeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(383, 383, 383)
                                 .addComponent(jLabel10)))
@@ -271,7 +267,7 @@ public class StudentsCrudPanel extends javax.swing.JPanel {
                 .addComponent(jLabel10)
                 .addGap(37, 37, 37)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(adminStudentId, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
@@ -288,30 +284,18 @@ public class StudentsCrudPanel extends javax.swing.JPanel {
                     .addComponent(adminStudentPhoneNo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7)
-                            .addComponent(adminStudentDOB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(adminStudentUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(adminStudentPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel8))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(adminStudentRadioMale)
-                        .addComponent(adminStudentRadioFemale)
-                        .addComponent(adminStudentRadioOther)))
-                .addGap(31, 31, 31)
+                        .addComponent(adminStudentUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4))
+                    .addComponent(jLabel8)
+                    .addComponent(adminStudentPassword))
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(adminStudentDeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(adminStudentUpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(adminStudentCreateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31))
+                .addGap(71, 71, 71))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -334,10 +318,6 @@ public class StudentsCrudPanel extends javax.swing.JPanel {
     private void adminStudentPhoneNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminStudentPhoneNoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_adminStudentPhoneNoActionPerformed
-
-    private void adminStudentPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminStudentPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_adminStudentPasswordActionPerformed
 
     private void adminStudentUpdateBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminStudentUpdateBtnMouseEntered
         // TODO add your handling code here:
@@ -375,35 +355,189 @@ public class StudentsCrudPanel extends javax.swing.JPanel {
 
     private void adminStudentCreateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminStudentCreateBtnActionPerformed
         // TODO add your handling code here:
+        
+        String id = adminStudentId.getText();
+        String fname = adminStudentFname.getText();
+        String lname = adminStudentLname.getText();
+        String mail = adminStudentMail.getText();
+        String phoneno = adminStudentPhoneNo.getText();
+        String username = adminStudentUsername.getText();
+        String password = new String(adminStudentPassword.getPassword());
+        
+        if(studentsList.stream().map(user -> user.getId()).toList().contains(id)){
+            JOptionPane.showMessageDialog(this, "Student with this ID already exists. Please check again");
+            return;
+        }
+        
+        User user = new User(id, fname, lname, mail, phoneno, username, password, UserRole.STUDENT);
+        
+        OperatingSystem.getInstance().getUsers().add(user);
+        OperatingSystem.getInstance().writeUsers();
+        
+        
+        adminStudentId.setText("");
+        adminStudentFname.setText("");
+        adminStudentLname.setText("");
+        adminStudentMail.setText("");
+        adminStudentPhoneNo.setText("");
+        adminStudentUsername.setText("");
+        adminStudentPassword.setText("");
+
+
+        populateStudentsList();
+        populateStudentsTable();
+        
     }//GEN-LAST:event_adminStudentCreateBtnActionPerformed
+
+    private void adminStudentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminStudentTableMouseClicked
+        // TODO add your handling code here:
+        if(adminStudentTable.getSelectedRow() != -1){
+            User user = studentsList.get(adminStudentTable.getSelectedRow());
+            adminStudentId.setText(user.getId());
+            adminStudentFname.setText(user.getFirstName());
+            adminStudentLname.setText(user.getLastName());
+            adminStudentMail.setText(user.getEmail());
+            adminStudentPhoneNo.setText(user.getPhoneNumber());
+            adminStudentUsername.setText(user.getUsername());
+            adminStudentPassword.setText(user.getPassword());
+            
+            adminStudentId.setEnabled(false);
+            adminStudentCreateBtn.setEnabled(false);
+            adminStudentUpdateBtn.setEnabled(true);
+            adminStudentDeleteBtn.setEnabled(true);
+        }
+        else{
+            adminStudentId.setText("");
+            adminStudentFname.setText("");
+            adminStudentLname.setText("");
+            adminStudentMail.setText("");
+            adminStudentPhoneNo.setText("");
+            adminStudentUsername.setText("");
+            adminStudentPassword.setText("");
+            
+            adminStudentId.setEnabled(true);
+            adminStudentCreateBtn.setEnabled(true);
+            adminStudentUpdateBtn.setEnabled(false);
+            adminStudentDeleteBtn.setEnabled(false);
+        }
+    }//GEN-LAST:event_adminStudentTableMouseClicked
+
+    private void adminStudentUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminStudentUpdateBtnActionPerformed
+        // TODO add your handling code here:
+        String id = adminStudentId.getText();
+        String fname = adminStudentFname.getText();
+        String lname = adminStudentLname.getText();
+        String mail = adminStudentMail.getText();
+        String phoneno = adminStudentPhoneNo.getText();
+        String username = adminStudentUsername.getText();
+        String password = new String(adminStudentPassword.getPassword());
+        
+        User user = studentsList.stream().filter(u -> u.getId().equals(id)).findFirst().orElse(null);
+        
+        user.setFirstName(fname);
+        user.setLastName(lname);
+        user.setEmail(mail);
+        user.setPhoneNumber(phoneno);
+        user.setUsername(username);
+        user.setPassword(password);
+        
+        OperatingSystem.getInstance().writeUsers();
+        
+        adminStudentId.setText("");
+        adminStudentFname.setText("");
+        adminStudentLname.setText("");
+        adminStudentMail.setText("");
+        adminStudentPhoneNo.setText("");
+        adminStudentUsername.setText("");
+        adminStudentPassword.setText("");
+        
+        populateStudentsList();
+        populateStudentsTable();
+
+        adminStudentId.setEnabled(true);
+        adminStudentCreateBtn.setEnabled(true);
+        adminStudentUpdateBtn.setEnabled(false);
+        adminStudentDeleteBtn.setEnabled(false);
+    }//GEN-LAST:event_adminStudentUpdateBtnActionPerformed
+
+    private void adminStudentDeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminStudentDeleteBtnActionPerformed
+        // TODO add your handling code here:
+        
+        if(JOptionPane.showConfirmDialog(this, "Do you really want to delete this student record") == JOptionPane.YES_OPTION){
+            
+            String id = adminStudentId.getText();
+        
+            User user = studentsList.stream().filter(u -> u.getId().equals(id)).findFirst().orElse(null);
+            
+            OperatingSystem.getInstance().getUsers().remove(user);
+            OperatingSystem.getInstance().writeUsers();
+            
+            adminStudentId.setText("");
+            adminStudentFname.setText("");
+            adminStudentLname.setText("");
+            adminStudentMail.setText("");
+            adminStudentPhoneNo.setText("");
+            adminStudentUsername.setText("");
+            adminStudentPassword.setText("");
+
+            populateStudentsList();
+            populateStudentsTable();
+
+            adminStudentId.setEnabled(true);
+            adminStudentCreateBtn.setEnabled(true);
+            adminStudentUpdateBtn.setEnabled(false);
+            adminStudentDeleteBtn.setEnabled(false);
+        
+        }
+    }//GEN-LAST:event_adminStudentDeleteBtnActionPerformed
+
+    private void adminStudentPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminStudentPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_adminStudentPasswordActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adminStudentCreateBtn;
-    private com.toedter.calendar.JDateChooser adminStudentDOB;
     private javax.swing.JButton adminStudentDeleteBtn;
     private javax.swing.JTextField adminStudentFname;
     private javax.swing.JTextField adminStudentId;
     private javax.swing.JTextField adminStudentLname;
     private javax.swing.JTextField adminStudentMail;
-    private javax.swing.JTextField adminStudentPassword;
+    private javax.swing.JPasswordField adminStudentPassword;
     private javax.swing.JTextField adminStudentPhoneNo;
-    private javax.swing.JRadioButton adminStudentRadioFemale;
-    private javax.swing.JRadioButton adminStudentRadioMale;
-    private javax.swing.JRadioButton adminStudentRadioOther;
     private javax.swing.JTable adminStudentTable;
     private javax.swing.JButton adminStudentUpdateBtn;
     private javax.swing.JTextField adminStudentUsername;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    private void populateStudentsList() {
+        
+        studentsList = OperatingSystem.getInstance().getUsers().stream().filter(user -> user.getRole().equals(UserRole.STUDENT)).toList();
+    }
+
+    private void populateStudentsTable() {
+        DefaultTableModel model = (DefaultTableModel) adminStudentTable.getModel();
+        model.setRowCount(0);
+        
+        for(User user : studentsList){
+            Object[] row = new Object[6];
+            
+            String[] userString = user.toString().split(",");
+            
+            for (int i = 0; i < 6; i++) {
+                row[i] = userString[i];
+            }
+            
+            model.addRow(row);
+        }
+    }
 }

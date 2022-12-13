@@ -4,19 +4,30 @@
  */
 package edu.neu.csye6200.librarymanagement.views;
 
+import edu.neu.csye6200.librarymanagement.models.User;
+import edu.neu.csye6200.librarymanagement.utils.OperatingSystem;
 import java.awt.Color;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Pavan munaganti
  */
 public class AdminStaffPanel extends javax.swing.JPanel {
-
+    
+    private List<User> staffList;
     /**
      * Creates new form AdminStaffPanel
      */
     public AdminStaffPanel() {
         initComponents();
+        populateStaffList();
+        populateStaffTable();
+        adminStaffUpdateBtn.setEnabled(false);
+        adminStaffDeleteBtn.setEnabled(false);
+        
     }
 
     /**
@@ -34,26 +45,20 @@ public class AdminStaffPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         adminStaffMail = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         adminStaffUsername = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         adminStaffLname = new javax.swing.JTextField();
         adminStaffPhoneNo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        adminStaffPassword = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         adminStaffId = new javax.swing.JTextField();
-        adminStaffRadioMale = new javax.swing.JRadioButton();
-        adminStaffRadioFemale = new javax.swing.JRadioButton();
-        adminStaffRadioOther = new javax.swing.JRadioButton();
         adminStaffUpdateBtn = new javax.swing.JButton();
         adminStaffDeleteBtn = new javax.swing.JButton();
         adminStaffCreateBtn = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel10 = new javax.swing.JLabel();
+        adminStaffPassword = new javax.swing.JPasswordField();
 
         setName("adminStaffPanel"); // NOI18N
         setPreferredSize(new java.awt.Dimension(987, 702));
@@ -77,6 +82,11 @@ public class AdminStaffPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        adminStaffTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                adminStaffTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(adminStaffTable);
 
         adminStaffFname.addActionListener(new java.awt.event.ActionListener() {
@@ -96,9 +106,6 @@ public class AdminStaffPanel extends javax.swing.JPanel {
                 adminStaffMailActionPerformed(evt);
             }
         });
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("Gender");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Username");
@@ -127,27 +134,12 @@ public class AdminStaffPanel extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Phone No");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setText("Birth Date");
-
-        adminStaffPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminStaffPasswordActionPerformed(evt);
-            }
-        });
-
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setText("Password");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(204, 0, 0));
         jLabel9.setText("Husky Id");
-
-        adminStaffRadioMale.setText("Male");
-
-        adminStaffRadioFemale.setText("Female");
-
-        adminStaffRadioOther.setText("Other");
 
         adminStaffUpdateBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         adminStaffUpdateBtn.setText("Update");
@@ -157,6 +149,11 @@ public class AdminStaffPanel extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 adminStaffUpdateBtnMouseExited(evt);
+            }
+        });
+        adminStaffUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminStaffUpdateBtnActionPerformed(evt);
             }
         });
 
@@ -170,6 +167,11 @@ public class AdminStaffPanel extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 adminStaffDeleteBtnMouseExited(evt);
+            }
+        });
+        adminStaffDeleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminStaffDeleteBtnActionPerformed(evt);
             }
         });
 
@@ -207,57 +209,47 @@ public class AdminStaffPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(150, 150, 150)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(adminStaffMail, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(adminStaffUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(adminStaffRadioMale)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(adminStaffRadioFemale)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(adminStaffRadioOther)))
-                                .addGap(65, 65, 65)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(adminStaffLname, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(adminStaffPhoneNo, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(adminStaffPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(adminStaffFname, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(adminStaffId, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(adminStaffCreateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(adminStaffUpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
-                                .addComponent(adminStaffDeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 158, Short.MAX_VALUE)))
+                                .addComponent(adminStaffDeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 159, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(adminStaffUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(65, 65, 65)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(adminStaffPassword))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(adminStaffMail, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(65, 65, 65)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(adminStaffLname, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(adminStaffPhoneNo, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(adminStaffFname, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(adminStaffId, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(0, 158, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(383, 383, 383)
@@ -268,7 +260,7 @@ public class AdminStaffPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
@@ -288,31 +280,19 @@ public class AdminStaffPanel extends javax.swing.JPanel {
                         .addComponent(adminStaffMail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2)
                         .addComponent(jLabel6)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(adminStaffUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(adminStaffPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel8))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(adminStaffRadioMale)
-                        .addComponent(adminStaffRadioFemale)
-                        .addComponent(adminStaffRadioOther)))
+                        .addComponent(adminStaffUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4))
+                    .addComponent(jLabel8)
+                    .addComponent(adminStaffPassword))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(adminStaffDeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(adminStaffUpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(adminStaffCreateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31))
+                .addGap(77, 77, 77))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -335,10 +315,6 @@ public class AdminStaffPanel extends javax.swing.JPanel {
     private void adminStaffPhoneNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminStaffPhoneNoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_adminStaffPhoneNoActionPerformed
-
-    private void adminStaffPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminStaffPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_adminStaffPasswordActionPerformed
 
     private void adminStaffUpdateBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminStaffUpdateBtnMouseEntered
         // TODO add your handling code here:
@@ -376,7 +352,141 @@ public class AdminStaffPanel extends javax.swing.JPanel {
 
     private void adminStaffCreateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminStaffCreateBtnActionPerformed
         // TODO add your handling code here:
+        
+        String id = adminStaffId.getText();
+        String fname = adminStaffFname.getText();
+        String lname = adminStaffLname.getText();
+        String mail = adminStaffMail.getText();
+        String phoneno = adminStaffPhoneNo.getText();
+        String username = adminStaffUsername.getText();
+        String password = new String(adminStaffPassword.getPassword());
+        
+        if(staffList.stream().map(user -> user.getId()).toList().contains(id)){
+            JOptionPane.showMessageDialog(this, "Staff with this ID already exists. Please check again");
+            return;
+        }
+        
+        User user = new User(id, fname, lname, mail, phoneno, username, password, User.UserRole.STAFF);
+        
+        OperatingSystem.getInstance().getUsers().add(user);
+        OperatingSystem.getInstance().writeUsers();
+        
+        
+        adminStaffId.setText("");
+        adminStaffFname.setText("");
+        adminStaffLname.setText("");
+        adminStaffMail.setText("");
+        adminStaffPhoneNo.setText("");
+        adminStaffUsername.setText("");
+        adminStaffPassword.setText("");
+
+
+        populateStaffList();
+        populateStaffTable();
     }//GEN-LAST:event_adminStaffCreateBtnActionPerformed
+
+    private void adminStaffTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminStaffTableMouseClicked
+        // TODO add your handling code here:
+        if(adminStaffTable.getSelectedRow() != -1){
+            User user = staffList.get(adminStaffTable.getSelectedRow());
+            adminStaffId.setText(user.getId());
+            adminStaffFname.setText(user.getFirstName());
+            adminStaffLname.setText(user.getLastName());
+            adminStaffMail.setText(user.getEmail());
+            adminStaffPhoneNo.setText(user.getPhoneNumber());
+            adminStaffUsername.setText(user.getUsername());
+            adminStaffPassword.setText(user.getPassword());
+            
+            adminStaffId.setEnabled(false);
+            adminStaffCreateBtn.setEnabled(false);
+            adminStaffUpdateBtn.setEnabled(true);
+            adminStaffDeleteBtn.setEnabled(true);
+        }
+        else{
+            adminStaffId.setText("");
+            adminStaffFname.setText("");
+            adminStaffLname.setText("");
+            adminStaffMail.setText("");
+            adminStaffPhoneNo.setText("");
+            adminStaffUsername.setText("");
+            adminStaffPassword.setText("");
+            
+            adminStaffId.setEnabled(true);
+            adminStaffCreateBtn.setEnabled(true);
+            adminStaffUpdateBtn.setEnabled(false);
+            adminStaffDeleteBtn.setEnabled(false);
+        }
+    }//GEN-LAST:event_adminStaffTableMouseClicked
+
+    private void adminStaffUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminStaffUpdateBtnActionPerformed
+        // TODO add your handling code here:
+        
+        String id = adminStaffId.getText();
+        String fname = adminStaffFname.getText();
+        String lname = adminStaffLname.getText();
+        String mail = adminStaffMail.getText();
+        String phoneno = adminStaffPhoneNo.getText();
+        String username = adminStaffUsername.getText();
+        String password = new String(adminStaffPassword.getPassword());
+        
+        User user = staffList.stream().filter(u -> u.getId().equals(id)).findFirst().orElse(null);
+        
+        user.setFirstName(fname);
+        user.setLastName(lname);
+        user.setEmail(mail);
+        user.setPhoneNumber(phoneno);
+        user.setUsername(username);
+        user.setPassword(password);
+        
+        OperatingSystem.getInstance().writeUsers();
+        
+        adminStaffId.setText("");
+        adminStaffFname.setText("");
+        adminStaffLname.setText("");
+        adminStaffMail.setText("");
+        adminStaffPhoneNo.setText("");
+        adminStaffUsername.setText("");
+        adminStaffPassword.setText("");
+        
+        populateStaffList();
+        populateStaffTable();
+
+        adminStaffId.setEnabled(true);
+        adminStaffCreateBtn.setEnabled(true);
+        adminStaffUpdateBtn.setEnabled(false);
+        adminStaffDeleteBtn.setEnabled(false);
+    }//GEN-LAST:event_adminStaffUpdateBtnActionPerformed
+
+    private void adminStaffDeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminStaffDeleteBtnActionPerformed
+        // TODO add your handling code here:
+        
+        if(JOptionPane.showConfirmDialog(this, "Do you really want to delete this staff record") == JOptionPane.YES_OPTION){
+            
+            String id = adminStaffId.getText();
+        
+            User user = staffList.stream().filter(u -> u.getId().equals(id)).findFirst().orElse(null);
+            
+            OperatingSystem.getInstance().getUsers().remove(user);
+            OperatingSystem.getInstance().writeUsers();
+            
+            adminStaffId.setText("");
+            adminStaffFname.setText("");
+            adminStaffLname.setText("");
+            adminStaffMail.setText("");
+            adminStaffPhoneNo.setText("");
+            adminStaffUsername.setText("");
+            adminStaffPassword.setText("");
+
+            populateStaffList();
+            populateStaffTable();
+
+            adminStaffId.setEnabled(true);
+            adminStaffCreateBtn.setEnabled(true);
+            adminStaffUpdateBtn.setEnabled(false);
+            adminStaffDeleteBtn.setEnabled(false);
+        
+        }
+    }//GEN-LAST:event_adminStaffDeleteBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -386,25 +496,40 @@ public class AdminStaffPanel extends javax.swing.JPanel {
     private javax.swing.JTextField adminStaffId;
     private javax.swing.JTextField adminStaffLname;
     private javax.swing.JTextField adminStaffMail;
-    private javax.swing.JTextField adminStaffPassword;
+    private javax.swing.JPasswordField adminStaffPassword;
     private javax.swing.JTextField adminStaffPhoneNo;
-    private javax.swing.JRadioButton adminStaffRadioFemale;
-    private javax.swing.JRadioButton adminStaffRadioMale;
-    private javax.swing.JRadioButton adminStaffRadioOther;
     private javax.swing.JTable adminStaffTable;
     private javax.swing.JButton adminStaffUpdateBtn;
     private javax.swing.JTextField adminStaffUsername;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    private void populateStaffList() {
+        staffList = OperatingSystem.getInstance().getUsers().stream().filter(user -> user.getRole().equals(User.UserRole.STAFF)).toList();
+    }
+
+    private void populateStaffTable() {
+        DefaultTableModel model = (DefaultTableModel) adminStaffTable.getModel();
+        model.setRowCount(0);
+        
+        for(User user : staffList){
+            Object[] row = new Object[6];
+            
+            String[] userString = user.toString().split(",");
+            
+            for (int i = 0; i < 6; i++) {
+                row[i] = userString[i];
+            }
+            
+            model.addRow(row);
+        }
+    }
 }
