@@ -15,6 +15,7 @@ import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -103,6 +104,13 @@ public class OperatingSystem {
     
     public void writeUsers(){
         try{
+            List<User> copyUsers = new ArrayList<>(users);
+            copyUsers.forEach(user -> {
+                if (user.getFirstName().isBlank() || user.getEmail().isBlank() || user.getId().isBlank()) {
+                    users.remove(user);
+                    System.out.println("removed user: " + user.toString());
+                }
+            });
             Files.write(Path.of("csv/users.csv"), users.stream().map(user -> user.toString()).toList(), StandardOpenOption.TRUNCATE_EXISTING);
 
         } catch (Exception e) {
